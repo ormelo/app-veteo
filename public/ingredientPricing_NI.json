@@ -1,0 +1,611 @@
+{
+	"cabbage": {
+		"standardUnitPrice": 0,
+		"mrp": 19,
+		"qty": "1 pc",
+		"name": "Fresh Cabbage Premium 1 pc",
+		"url": "/fresh-cabbage-premium-v-1-pc-p.php"
+	},
+	"maida": {
+		"standardUnitPrice": 0.44,
+		"mrp": 22,
+		"qty": "500 g",
+		"name": "Bhagyalakshmi Maida 500 g",
+		"url": "/bhagyalakshmi-maida-v-500-g-p.php"
+	},
+	"besan": {
+		"standardUnitPrice": 1.08,
+		"mrp": 54,
+		"qty": "500 g",
+		"name": "Selecta Premium Besan 500 g",
+		"url": "/more-choice-superior-besan-v-500-g-p.php"
+	},
+	"curd": {
+		"standardUnitPrice": 0.46,
+		"mrp": 23,
+		"qty": "500 g",
+		"name": "Tirumala Curd 500 g",
+		"url": "/tirumala-curd-v-500-g-p.php"
+	},
+	"kasuri-methi": {
+		"standardUnitPrice": 10,
+		"mrp": 25,
+		"qty": "25 g",
+		"name": "Everest Kasuri Methi 25 g",
+		"url": "/everest-kasuri-methi-v-25-g-p.php"
+	},
+	"bread": {
+		"standardUnitPrice": 0.9,
+		"mrp": 18,
+		"qty": "200 g",
+		"name": "Fresh Baked White Bread 200 g",
+		"url": "/fresh-baked-white-bread-v-200-g-p.php"
+	},
+	"salt": {
+		"standardUnitPrice": 0.19,
+		"mrp": 19,
+		"qty": "1 Kg",
+		"name": "Tata Salt 1 Kg",
+		"url": "/tata-salt-v-1-kg-p.php"
+	},
+	"chaat-masala": {
+		"standardUnitPrice": 6,
+		"mrp": 30,
+		"qty": "50 g",
+		"name": "Aachi Chaat Masala Box 50 g",
+		"url": "/aachi-chaat-masala-box-v-50-g-p.php"
+	},
+	"paneer": {
+		"standardUnitPrice": 3.25,
+		"mrp": 65,
+		"qty": "200 g",
+		"name": "Nandini Paneer 200 g",
+		"url": "/nandini-paneer-v-200-g-p.php"
+	},
+	"sunflower-oil": {
+		"standardUnitPrice": 1.15,
+		"mrp": 115,
+		"qty": "1 Ltr",
+		"name": "Dhara Health Sunflower Oil 1 Ltr",
+		"url": "/dhara-health-v-1-ltr-p.php"
+	},
+	"garam-masala": {
+		"standardUnitPrice": 8.2,
+		"mrp": 41,
+		"qty": "50 g",
+		"name": "Everest Garam Masala 50 g",
+		"url": "/everest-garam-masala-v-50-g-p.php"
+	},
+	"coriander-powder": {
+		"standardUnitPrice": 2.7,
+		"mrp": 27,
+		"qty": "100 g",
+		"name": "Everest Coriander Powder 100 g",
+		"url": "/everest-coriander-powder-v-100-g-p.php"
+	},
+	"potato": {
+		"standardUnitPrice": 0.29,
+		"mrp": 29,
+		"qty": "1 Kg",
+		"name": "Fresh Potato 1 Kg",
+		"url": "/fresh-potato-v-1-kg-p.php"
+	},
+	"ginger-garlic-paste": {
+		"standardUnitPrice": 2.2,
+		"mrp": 22,
+		"qty": "100 g",
+		"name": "Eastern Ginger Garlic Paste 100 g",
+		"url": "/eastern-ginger-garlic-paste-v-100-g-p.php"
+	},
+	"capsicum": {
+		"standardUnitPrice": 0.28,
+		"mrp": 7,
+		"qty": "250 g",
+		"name": "Fresh Capsicum Green 250 g",
+		"url": "/fresh-capsicum-green-v-250-g-p.php"
+	},
+	"green-chillies": {
+		"standardUnitPrice": 0.35,
+		"mrp": 3.5,
+		"qty": "100 g",
+		"name": "Fresh Chilli Green 100 g",
+		"url": "/fresh-chilli-green-v-100-g-p.php"
+	},
+	"onion": {
+		"standardUnitPrice": 0.2,
+		"mrp": 20,
+		"qty": "1 Kg",
+		"name": "Fresh Onion Red 1 Kg",
+		"url": "/fresh-onion-red-v-1-kg-p.php"
+	},
+	"chilli-powder": {
+		"standardUnitPrice": 3,
+		"mrp": 30,
+		"qty": "100 g",
+		"name": "Sakthi Chilli Powder 100 g",
+		"url": "/sakthi-chilli-powder-v-100-g-p.php"
+	},
+	"cheese": {
+		"standardUnitPrice": 3.25,
+		"mrp": 65,
+		"qty": "200 g",
+		"name": "Nandini Paneer 200 g",
+		"url": "/nandini-paneer-v-200-g-p.php"
+	},
+	"oil": {
+		"standardUnitPrice": 5.25,
+		"mrp": 105,
+		"qty": "200 ml",
+		"name": "Mahabhringraj Oil 200 ml",
+		"url": "/mahabhringraj-oil-v-200-ml-p.php"
+	},
+	"cornflour": {
+		"standardUnitPrice": 2.5,
+		"mrp": 25,
+		"qty": "100 g",
+		"name": "Weikfield Cornflour 100 g",
+		"url": "/cornflour-v-100-g-p.php"
+	},
+	"cauliflower-florets": {
+		"standardUnitPrice": 0,
+		"mrp": 25,
+		"qty": "1 pc",
+		"name": "Fresh Cauliflower Nos 1 pc",
+		"url": "/fresh-cauliflower-nos-v-1-pc-p.php"
+	},
+	"plain-flour": {
+		"standardUnitPrice": 5.459770114942529,
+		"mrp": 190,
+		"qty": "348 g",
+		"name": "Salsalito Original Wrap Plain Flour Tortilla 348 g",
+		"url": "/salsalito-original-wrap-plain-flour-tortilla-v-348-g-p.php"
+	},
+	"red-chilli-sauce": {
+		"standardUnitPrice": 2.2222222222222223,
+		"mrp": 20,
+		"qty": "90 g",
+		"name": "Chings Red Chilli Sauce 90 g",
+		"url": "/red-chilli-sauce1-v-90-g-p.php"
+	},
+	"spring-onion": {
+		"standardUnitPrice": 0,
+		"mrp": 7,
+		"qty": "1 pc",
+		"name": "Fresh Spring Onion Bunch 1 pc",
+		"url": "/fresh-spring-onion-bunch1-v-1-pc-p.php"
+	},
+	"soy-sauce": {
+		"standardUnitPrice": 2.5,
+		"mrp": 50,
+		"qty": "200 g",
+		"name": "Chings Dark Soy Sauce 200 g",
+		"url": "/dark-soy-sauce-v-200-g-p.php"
+	},
+	"black-pepper": {
+		"standardUnitPrice": 8.1,
+		"mrp": 81,
+		"qty": "100 g",
+		"name": "Standard Black Pepper Loose 100 g",
+		"url": "/standard-black-pepper-loose-v-100-g-p.php"
+	},
+	"water": {
+		"standardUnitPrice": 0.2,
+		"mrp": 20,
+		"qty": "1 Ltr",
+		"name": "Bindu Water 1 Ltr",
+		"url": "/bindu-water-v-1-ltr-p.php"
+	},
+	"garlic": {
+		"standardUnitPrice": 0.54,
+		"mrp": 13.5,
+		"qty": "250 g",
+		"name": "Fresh Garlic Economy 250 g",
+		"url": "/fresh-garlic-economy-v-250-g-p.php"
+	},
+	"tomato-ketchup": {
+		"standardUnitPrice": 2.95,
+		"mrp": 59,
+		"qty": "200 g",
+		"name": "Heinz Tomato Ketchup 200 g",
+		"url": "/heinz-tomato-ketchup-v-200-g-p.php"
+	},
+	"carrot": {
+		"standardUnitPrice": 0.45,
+		"mrp": 22.5,
+		"qty": "500 g",
+		"name": "Fresh Carrot Local 500 g",
+		"url": "/fresh-carrot-local-v-500-g-p.php"
+	},
+	"vinegar": {
+		"standardUnitPrice": 0.7142857142857143,
+		"mrp": 50,
+		"qty": "700 ml",
+		"name": "Kitchens Promise vinegar 700 ml",
+		"url": "/kitchens-promise-vinegar-v-700-ml-p.php"
+	},
+	"schezuan-sauce": {
+		"standardUnitPrice": 10.869565217391305,
+		"mrp": 50,
+		"qty": "46 g",
+		"name": "Knorr Easy To Cook Chinese Schezuan Ready Mix 46 g",
+		"url": "/knorr-easy-to-cook-chinese-schezuan-ready-mix-v-46-g-p.php"
+	},
+	"hakka-noodles": {
+		"standardUnitPrice": 1.7333333333333334,
+		"mrp": 26,
+		"qty": "150 g",
+		"name": "More Choice Egg Hakka Noodles 150 g",
+		"url": "/more-choice-egg-hakka-noodles-v-150-g-p.php"
+	},
+	"ginger)": {
+		"standardUnitPrice": 1.28,
+		"mrp": 32,
+		"qty": "250 g",
+		"name": "Fresh Ginger 250 g",
+		"url": "/fresh-ginger-v-250-g-p.php"
+	},
+	"ginger": {
+		"standardUnitPrice": 1.28,
+		"mrp": 32,
+		"qty": "250 g",
+		"name": "Fresh Ginger 250 g",
+		"url": "/fresh-ginger-v-250-g-p.php"
+	},
+	"sugar": {
+		"standardUnitPrice": 0.36,
+		"mrp": 36,
+		"qty": "1 Kg",
+		"name": "More Sugar loose 1 Kg",
+		"url": "/more-sugar-loose-v-1-kg-p.php"
+	},
+	"oregano": {
+		"standardUnitPrice": 39.6,
+		"mrp": 99,
+		"qty": "25 g",
+		"name": "On1y Oregano Herbs Tin 25 g",
+		"url": "/on1y-oregano-herbs-tin-v-25-g-p.php"
+	},
+	"butter-cubes": {
+		"standardUnitPrice": 4.6,
+		"mrp": 46,
+		"qty": "100 g",
+		"name": "Amul Butter 100 g",
+		"url": "/amul-butter-v-100-g-p.php"
+	},
+	"soya-granules": {
+		"standardUnitPrice": 2.25,
+		"mrp": 45,
+		"qty": "200 g",
+		"name": "Nutrela Soya Granules 200 g",
+		"url": "/nutrela-soya-granules-v-200-g-p.php"
+	},
+	"mango-powder": {
+		"standardUnitPrice": 6,
+		"mrp": 60,
+		"qty": "100 g",
+		"name": "MDH Amchur Powder (Dry Mango Powder) 100 g",
+		"url": "/mdh-dry-mango-powder-v-100-g-p.php"
+	},
+	"spinach": {
+		"standardUnitPrice": 0,
+		"mrp": 7,
+		"qty": "1 pc",
+		"name": "Fresh Spinach (Palak) Bunch 1 pc",
+		"url": "/fresh-spinach-bunch1-v-1-pc-p.php"
+	},
+	"turmeric": {
+		"standardUnitPrice": 2.45,
+		"mrp": 49,
+		"qty": "200 g",
+		"name": "More Choice Superior Turmeric (Haldi) Powder 200 g",
+		"url": "/more-choice-superior-turmeric-haldi-powder-v-200-g-p.php"
+	},
+	"palak": {
+		"standardUnitPrice": 0,
+		"mrp": 7,
+		"qty": "1 pc",
+		"name": "Fresh Spinach (Palak) Bunch 1 pc",
+		"url": "/fresh-spinach-bunch1-v-1-pc-p.php"
+	},
+	"peas": {
+		"standardUnitPrice": 2.25,
+		"mrp": 45,
+		"qty": "200 g",
+		"name": "Safal Frozen Green Peas 200 g",
+		"url": "/safal-frozen-green-peas-v-200-g-p.php"
+	},
+	"lemon": {
+		"standardUnitPrice": 0,
+		"mrp": 6,
+		"qty": "1 pc",
+		"name": "Fresh Lemon 1 pc",
+		"url": "/fresh-lemon1-v-1-pc-p.php"
+	},
+	"ghee": {
+		"standardUnitPrice": 4.8,
+		"mrp": 96,
+		"qty": "200 ml",
+		"name": "Nandini Pure Ghee Pouch 200 ml",
+		"url": "/nandini-pure-ghee-v-200-ml-p.php"
+	},
+	"wheat-flour": {
+		"standardUnitPrice": 0.52,
+		"mrp": 52,
+		"qty": "1 Kg",
+		"name": "Aashirvaad Superior MP Wheat Atta 1 Kg",
+		"url": "/aashirvaad-superior-mp-wheat-atta-v-1-kg-p.php"
+	},
+	"milk": {
+		"standardUnitPrice": 0.5,
+		"mrp": 10,
+		"qty": "200 ml",
+		"name": "Nandini Good Life Cow Milk 200 ml",
+		"url": "/nandini-goodlife-cow-milk-v-200-ml-p.php"
+	},
+	"tomato": {
+		"standardUnitPrice": 0.1,
+		"mrp": 5,
+		"qty": "500 g",
+		"name": "Fresh Tomato Standard 500 g",
+		"url": "/fresh-tomato-standard-v-500-g-p.php"
+	},
+	"cashew": {
+		"standardUnitPrice": 16.8,
+		"mrp": 168,
+		"qty": "100 g",
+		"name": "More Superior Cashew (Kaju) Whole 320 100 g",
+		"url": "/more-superior-cashew-kaju-whole-320-v-100-g-p.php"
+	},
+	"butter": {
+		"standardUnitPrice": 4.6,
+		"mrp": 46,
+		"qty": "100 g",
+		"name": "Amul Butter 100 g",
+		"url": "/amul-butter-v-100-g-p.php"
+	},
+	"cloves": {
+		"standardUnitPrice": 22.5,
+		"mrp": 45,
+		"qty": "20 g",
+		"name": "More Superior Clove (Lavang) 20 g",
+		"url": "/more-superior-clove-lavang-v-20-g-p.php"
+	},
+	"rajma": {
+		"standardUnitPrice": 1.16,
+		"mrp": 58,
+		"qty": "500 g",
+		"name": "More Superior Rajma Sharmili Small 500 g",
+		"url": "/more-superior-rajma-sharmili-small-v-500-g-p.php"
+	},
+	"urad-whole-black": {
+		"standardUnitPrice": 1.1,
+		"mrp": 55,
+		"qty": "500 g",
+		"name": "More Choice Superior Urad Whole Black 500 g",
+		"url": "/more-choice-superior-urad-whole-black-v-500-g-p.php"
+	},
+	"garama-masala": {
+		"standardUnitPrice": 10.8,
+		"mrp": 54,
+		"qty": "50 g",
+		"name": "Sakthi Mutton Masala 50 g",
+		"url": "/sakthi-mutton-masala-v-50-g-p.php"
+	},
+	"cardamom": {
+		"standardUnitPrice": 0.79,
+		"mrp": 39.5,
+		"qty": "500 g",
+		"name": "Fresh Banana Elaichi Yellaki 500 g",
+		"url": "/fresh-banana-elayachi1-v-500-g-p.php"
+	},
+	"beans": {
+		"standardUnitPrice": 0.68,
+		"mrp": 17,
+		"qty": "250 g",
+		"name": "Fresh French Beans 250 g",
+		"url": "/fresh-french-beans-v-250-g-p.php"
+	},
+	"cumin-seeds": {
+		"standardUnitPrice": 7,
+		"mrp": 70,
+		"qty": "100 g",
+		"name": "More Life 100% Organic Cumin Seed 100 g",
+		"url": "/more-life-100-organic-cumin-seed1-v-100-g-p.php"
+	},
+	"yellow-moong-dal": {
+		"standardUnitPrice": 0.79,
+		"mrp": 79,
+		"qty": "1 Kg",
+		"name": "More Moong Dal Dhuli Loose 1 Kg",
+		"url": "/more-moong-dal-dhuli-loose-v-1-kg-p.php"
+	},
+	"asafoetida": {
+		"standardUnitPrice": 226,
+		"mrp": 226,
+		"qty": "10 g",
+		"name": "SSP Special Asafoetida (Hing) 10 g",
+		"url": "/ssp-special-asafoetida-v-10-g-p.php"
+	},
+	"curry-leaves": {
+		"standardUnitPrice": 0,
+		"mrp": 7,
+		"qty": "1 pc",
+		"name": "Fresh Curry Leaves Bunch 1 pc",
+		"url": "/fresh-curry-leaves-bunch1-v-1-pc-p.php"
+	},
+	"sona-masuri-rice": {
+		"standardUnitPrice": 15,
+		"mrp": 1500,
+		"qty": "25 Kg",
+		"name": "Super Star Premium Sona Masuri Rice 25 Kg",
+		"url": "/super-star-premium-sona-masuri-rice-v-25-kg-p.php"
+	},
+	"mustard": {
+		"standardUnitPrice": 2.1,
+		"mrp": 21,
+		"qty": "100 g",
+		"name": "More Superior Mustard (Sarson) Rai 100 g",
+		"url": "/more-superior-mustard-sarson-rai-v-100-g-p.php"
+	},
+	"red-chilli": {
+		"standardUnitPrice": 3,
+		"mrp": 30,
+		"qty": "100 g",
+		"name": "Everest Kutilal Red Chilli Powder 100 g",
+		"url": "/everest-kutilal-red-chilli-powder-v-100-g-p.php"
+	},
+	"masoor-dal": {
+		"standardUnitPrice": 0.75,
+		"mrp": 37.5,
+		"qty": "500 g",
+		"name": "More Masoor Dal Loose 500 g",
+		"url": "/more-masoor-dal-loose-v-500-g-p.php"
+	},
+	"cinnamon": {
+		"standardUnitPrice": 22,
+		"mrp": 110,
+		"qty": "50 g",
+		"name": "More Superior Cinnamon Stick (Dalchini) 50 g",
+		"url": "/more-superior-cinnamon-stick-dalchini-v-50-g-p.php"
+	},
+	"red-chillies": {
+		"standardUnitPrice": 2.5,
+		"mrp": 50,
+		"qty": "200 g",
+		"name": "Lijjat Urad with Red Chillies Papad 200 g",
+		"url": "/lijjat-urad-with-red-chillies-papad-v-200-g-p.php"
+	},
+	"sunflower-oild": {
+		"standardUnitPrice": 1.15,
+		"mrp": 115,
+		"qty": "1 Ltr",
+		"name": "Dhara Health Sunflower Oil 1 Ltr",
+		"url": "/dhara-health-v-1-ltr-p.php"
+	},
+	"chilli-sauce": {
+		"standardUnitPrice": 2.125,
+		"mrp": 85,
+		"qty": "400 g",
+		"name": "Weikfield Sweet Chilli Sauce 400 g",
+		"url": "/weikfield-sweet-chilli-sauce-v-400-g-p.php"
+	},
+	"rice": {
+		"standardUnitPrice": 0.8,
+		"mrp": 80,
+		"qty": "1 Kg",
+		"name": "More Selecta Sona Masoori Rice 1 Kg",
+		"url": "/more-selecta-sona-masoori-rice-v-1-kg-p.php"
+	},
+	"spring-onions": {
+		"standardUnitPrice": 0,
+		"mrp": 7,
+		"qty": "1 pc",
+		"name": "Fresh Spring Onion Bunch 1 pc",
+		"url": "/fresh-spring-onion-bunch1-v-1-pc-p.php"
+	},
+	"snake-gourd": {
+		"standardUnitPrice": 0.18,
+		"mrp": 4.5,
+		"qty": "250 g",
+		"name": "Fresh Snake Gourd Small 250 g",
+		"url": "/fresh-snake-gourd-small-v-250-g-p.php"
+	},
+	"cucumber": {
+		"standardUnitPrice": 0.29,
+		"mrp": 14.5,
+		"qty": "500 g",
+		"name": "Fresh Cucumber Hybrid 500 g",
+		"url": "/fresh-cucumber-hybrid-v-500-g-p.php"
+	},
+	"moong-dal": {
+		"standardUnitPrice": 0.79,
+		"mrp": 79,
+		"qty": "1 Kg",
+		"name": "More Moong Dal Dhuli Loose 1 Kg",
+		"url": "/more-moong-dal-dhuli-loose-v-1-kg-p.php"
+	},
+	"bengal-gram": {
+		"standardUnitPrice": 1.18,
+		"mrp": 59,
+		"qty": "500 g",
+		"name": "Safe Harvest Bengal Gram 500 g",
+		"url": "/safe-harvest-bengal-gram-v-500-g-p.php"
+	},
+	"urad-dal": {
+		"standardUnitPrice": 0.74,
+		"mrp": 74,
+		"qty": "1 Kg",
+		"name": "More Urad Dal Loose 1 Kg",
+		"url": "/more-urad-dal-loose-v-1-kg-p.php"
+	},
+	"toor-dal": {
+		"standardUnitPrice": 0.64,
+		"mrp": 64,
+		"qty": "1 Kg",
+		"name": "More Value Tur Dal Loose 1 Kg",
+		"url": "/more-value-tur-dal-loose-v-1-kg-p.php"
+	},
+	"beetroot": {
+		"standardUnitPrice": 0.19,
+		"mrp": 9.5,
+		"qty": "500 g",
+		"name": "Fresh Beetroot 500 g",
+		"url": "/fresh-beetroot1-v-500-g-p.php"
+	},
+	"pumpkin": {
+		"standardUnitPrice": 0.22,
+		"mrp": 11,
+		"qty": "500 g",
+		"name": "Fresh Pumpkin Green Slice 500 g",
+		"url": "/fresh-pumpkin-green-slice-v-500-g-p.php"
+	},
+	"tarmarind": {
+		"standardUnitPrice": 3.9,
+		"mrp": 39,
+		"qty": "100 g",
+		"name": "More Superior Tamarind (Imli) 100 g",
+		"url": "/more-superior-tamarind-imli1-v-100-g-p.php"
+	},
+	"red-chilli-powder": {
+		"standardUnitPrice": 3,
+		"mrp": 30,
+		"qty": "100 g",
+		"name": "Everest Kutilal Red Chilli Powder 100 g",
+		"url": "/everest-kutilal-red-chilli-powder-v-100-g-p.php"
+	},
+	"rasam-powder": {
+		"standardUnitPrice": 6.4,
+		"mrp": 64,
+		"qty": "100 g",
+		"name": "Sakthi Rasam Powder 100 g",
+		"url": "/sakthi-rasam-powder-v-100-g-p.php"
+	},
+	"peanuts": {
+		"standardUnitPrice": 1.1,
+		"mrp": 110,
+		"qty": "1 Kg",
+		"name": "More Raw Peanuts Loose 1 Kg",
+		"url": "/more-raw-peanuts-loose-v-1-kg-p.php"
+	},
+	"tamarind": {
+		"standardUnitPrice": 3.9,
+		"mrp": 39,
+		"qty": "100 g",
+		"name": "More Superior Tamarind (Imli) 100 g",
+		"url": "/more-superior-tamarind-imli1-v-100-g-p.php"
+	},
+	"cashews": {
+		"standardUnitPrice": 18.625,
+		"mrp": 149,
+		"qty": "80 g",
+		"name": "DCC Delicious Cashews Dry Roasted & Cheese 80 g",
+		"url": "/dcc-delicious-cashews-dry-roasted-cheese1-v-80-g-p.php"
+	},
+	"snflower-oil": {
+		"standardUnitPrice": 1.15,
+		"mrp": 115,
+		"qty": "1 Ltr",
+		"name": "Dhara Health Sunflower Oil 1 Ltr",
+		"url": "/dhara-health-v-1-ltr-p.php"
+	}
+}
