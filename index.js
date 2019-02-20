@@ -10,8 +10,8 @@ var redisURLVal = process.env.REDISCLOUD_URL || 'redis://rediscloud:vWISiXr6xai8
 redisURL = url.parse(redisURLVal);
 var bodyParser = require('body-parser');
 
-var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
-client.auth('vWISiXr6xai89eidZYXjM0OK3KeXfkPU');
+//var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+//client.auth('vWISiXr6xai89eidZYXjM0OK3KeXfkPU');
 var keyName = 0;
 var valName = 0;
 
