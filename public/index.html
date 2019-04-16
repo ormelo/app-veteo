@@ -319,8 +319,8 @@ td {
 
   <div class="prod-container city"></div>
   <div class="button-container">
-    <input type="text" style="height: 47px;width: 100%;font-size: 20px;padding: 12px;border: 2px solid #9fa4af;border-radius: 37px;margin-top: -10px;padding-right: 75px;" value="smartphones under 8k" />
-    <a id="cta" href="/get-styled" class="btn" style="width: 73px;position: relative;float: right;right: -6px;bottom: 47px;height: 47px;z-index: 1;"><span>Go</span></a>
+    <input id="query" type="text" style="height: 47px;width: 100%;font-size: 20px;padding: 12px;border: 2px solid #9fa4af;border-radius: 37px;margin-top: -10px;padding-right: 75px;" value="smartphones under 8k" />
+    <a id="cta" href="#" onclick="invokeChat()" class="btn" style="width: 73px;position: relative;float: right;right: -6px;bottom: 47px;height: 47px;z-index: 1;"><span>Go</span></a>
   </div>
 
 </div>
@@ -421,6 +421,20 @@ if ('serviceWorker' in navigator) {
 gtag('config', 'UA-107877274-1',{'page_title': 'homepage','page_location': 'http://www.poseding.com','page_path': '/'}); 
 
 Loggr.Log.trackUser(uid, "", "Index page loaded.");
+
+
+function invokeChat() {
+  var xhttp = null;
+  if (window.XMLHttpRequest) {
+      // code for modern browsers
+      xmlhttp = new XMLHttpRequest();
+   } else {
+      // code for old IE browsers
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xhttp.open("POST", "https://enir2h2x2e.execute-api.us-east-2.amazonaws.com/default/invokeChat   ", true);
+  xhttp.send("q="+document.getElementById('query').value);
+}
 
 </script>
 

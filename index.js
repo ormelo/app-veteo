@@ -16,13 +16,13 @@ var fkClient = new client({
     token:"1b6372cefdf64b2cbe7c5d8491d2f528",
 },"json");
 
-fkClient.doIdSearch('MOBFAJB4CWKAZGPZ').then(function(value){
+/*fkClient.doIdSearch('MOBFAJB4CWKAZGPZ').then(function(value){
         //console.log(value); //object with status, error and body
 });
 
 fkClient.doKeywordSearch("mobiles under 8000",10).then(function(value){
-        //console.log(value); //object with status, error and body
-});
+        console.log(value); //object with status, error and body
+});*/
 
 //var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
 //client.auth('vWISiXr6xai89eidZYXjM0OK3KeXfkPU');

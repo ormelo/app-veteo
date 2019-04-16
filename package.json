@@ -33,7 +33,7 @@
     "babel-preset-react": "^6.24.1",
     "ddg": "0.0.3",
     "flipkart-affiliate": "^1.1.0",
-    "flipkart-api-affiliate-client": "^1.1.0",
+    "flipkart-api-affiliate-client": "1.1.0",
     "loggr": "^1.1.5",
     "node-schedule": "^1.3.0",
     "react": "^15.6.1",
