@@ -301,7 +301,7 @@ td {
     }
 }
 
-.chat-button {
+#app {
   display: none;
 }
 
@@ -448,7 +448,7 @@ function invokeChat() {
        window.chatClickTimer = setInterval(function(){
           if(document.querySelector('.chat-button') != null) {
             clearInterval(window.chatClickTimer);
-            setTimeout("document.querySelector('.chat-button').click()",1000);
+            setTimeout("document.querySelector('.chat-button').click()",3000);
           }
       },750); 
     }
