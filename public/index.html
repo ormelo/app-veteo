@@ -446,7 +446,7 @@ function invokeChat() {
        window.chatRes = JSON.parse(xmlhttp.responseText).body;
        eval(window.chatRes); 
        window.chatClickTimer = setInterval(function(){
-          if(typeof document.querySelector('.chat-button') != null) {
+          if(document.querySelector('.chat-button') != null) {
             clearInterval(window.chatClickTimer);
             document.querySelector('.chat-button').click();
           }
