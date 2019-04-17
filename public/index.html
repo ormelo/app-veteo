@@ -10,10 +10,10 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-107877274-1');
-</script>
+</script> 
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<title>attirist - shop looks that suit you</title>
+<title>Chirrp - Make smarter shopping decisions</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -434,6 +434,13 @@ function invokeChat() {
   }
   xmlhttp.open("GET", "https://enir2h2x2e.execute-api.us-east-2.amazonaws.com/default/invokeChat?q="+document.getElementById('query').value, true);
   xmlhttp.send(null);
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // Typical action to be performed when the document is ready:
+       console.log("response: ", xmlhttp.responseText);
+       eval(xmlhttp.responseText); 
+    }
+  };
 } 
 
 </script>
