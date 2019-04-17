@@ -448,7 +448,7 @@ function invokeChat() {
        window.chatClickTimer = setInterval(function(){
           if(document.querySelector('.chat-button') != null) {
             clearInterval(window.chatClickTimer);
-            document.querySelector('.chat-button').click();
+            setTimeout("document.querySelector('.chat-button').click()",1000);
           }
       },750); 
     }
