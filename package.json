@@ -23,7 +23,8 @@
     "update-json-file": "^1.1.1",
     "web-push": "^3.0.0",
     "flipkart-affiliate": "^1.1.0",
-    "flipkart-api-affiliate-client": "^1.1.0"
+    "flipkart-api-affiliate-client": "^1.1.0",
+    "uuid-v4": "^0.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",

@@ -49,28 +49,21 @@ exports.handler = async (event, context, callback) => {
         }
     };
 
-    
-
-    // let output = {
-    //         statusCode: 200,
-    //         body: "test",
-    //     };
-    // console.log('output');
-    // callback(undefined, output);
-
 
     
     return fkClient.doKeywordSearch(event["queryStringParameters"]["q"],10).then(function(value){
         console.log('shpng response.... ', value);
-        var productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
-       
+        //var productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
+       console.log('options... ', options);
         var req = http.request(options, function (res) {
         var chunks = [];
-
+        console.log('htt request made... ', http);
         res.on("data", function (chunk) {
             console.log('data: ', chunk);
             chunks.push(chunk);
         });
+
+        console.log('reuqest made to:', options);
 
         res.on("end", function () {
             var body = Buffer.concat(chunks);
@@ -124,7 +117,6 @@ exports.handler = async (event, context, callback) => {
                             };
 
                             console.log('--output--', output);
-                            callback(undefined, output);
 
                             //Create chat integration
                             
@@ -134,7 +126,7 @@ exports.handler = async (event, context, callback) => {
 
                     req2.write("{\"welcomeScreen\":false,\"whiteLabel\":false,\"colors\":{\"background\":\"#21262e\",\"text\":\"#ffffff\",\"theme\":\"#1F8CEB\",\"themeText\":\"#fafafa\",\"responseBackground\":\"#e9eef4\",\"responseText\":\"#646464\"},\"company\":{\"name\":\"chirrp\",\"description\":\"\",\"avatar\":{\"enabled\":true,\"url\":\"\"},\"background\":{\"enabled\":true,\"url\":\"\"},\"social\":{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}},\"chatWindow\":{\"theme\":\"default\"},\"chatButton\":{\"theme\":\"bubble\",\"text\":\"Chat with us!\"},\"storyId\":\""+storyId+"\"}");
                     req2.end();
-                    
+                    callback(undefined, "success");
 
                 });
             });
@@ -155,6 +147,4 @@ exports.handler = async (event, context, callback) => {
     });
 };
 
-/*let eventStub = {queryStringParameters: {q: 'refrigerators'}};
-let callbackStub = () => {};
-this.handler(eventStub, {}, callbackStub);*/
+this.handler({queryStringParameters:"headphones"},{},()=>{});
