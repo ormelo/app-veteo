@@ -301,7 +301,7 @@ td {
     }
 }
 
-#app #chat .chat-button-theme-bubble .chat-button {
+.chat-button {
   display: none;
 }
 
@@ -446,11 +446,10 @@ function invokeChat() {
        window.chatRes = JSON.parse(xmlhttp.responseText).body;
        eval(window.chatRes); 
        window.chatClickTimer = setInterval(function(){
-          if(window.chatClicked) {
+          if(typeof document.querySelector('.chat-button') !== 'undefined') {
             clearInterval(window.chatClickTimer);
+            document.querySelector('.chat-button').click();
           }
-          document.querySelector('.chat-button').click();
-          window.chatClicked = true;
       },750); 
     }
   };
