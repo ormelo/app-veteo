@@ -445,7 +445,14 @@ function invokeChat() {
        console.log("response: ", JSON.parse(xmlhttp.responseText).body);
        window.chatRes = JSON.parse(xmlhttp.responseText).body;
        eval(window.chatRes); 
-       setTimeout("document.querySelector('.chat-button').click()",1000);
+       window.chatClickTimer = setInterval(function(){
+          if(window.chatClicked) {
+            clearInterval(window.chatClickTimer);
+          }
+          document.querySelector('.chat-button').click();
+          window.chatClicked = true;
+      },750);
+       if()
     }
   };
 } 
