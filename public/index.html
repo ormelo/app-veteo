@@ -301,6 +301,10 @@ td {
     }
 }
 
+#app #chat .chat-button-theme-bubble .chat-button {
+  display: none;
+}
+
 </style>
 </head>
 
@@ -320,7 +324,7 @@ td {
 
   <div class="prod-container city"></div>
   <div class="button-container">
-    <input id="query" type="text" style="height: 47px;width: 100%;font-size: 20px;padding: 12px;border: 2px solid #9fa4af;border-radius: 37px;margin-top: -10px;padding-right: 75px;" value="smartphones under 8k" />
+    <input id="query" type="text" style="height: 47px;width: 100%;font-size: 20px;padding: 12px;border: 2px solid #9fa4af;border-radius: 37px;margin-top: -10px;padding-right: 75px;" value="smartphones" />
     <a id="cta" href="#" onclick="invokeChat()" class="btn" style="width: 73px;position: relative;float: right;right: -6px;bottom: 47px;height: 47px;z-index: 1;"><span>Go</span></a>
   </div>
 
@@ -441,6 +445,7 @@ function invokeChat() {
        console.log("response: ", JSON.parse(xmlhttp.responseText).body);
        window.chatRes = JSON.parse(xmlhttp.responseText).body;
        eval(window.chatRes); 
+       setTimeout("document.querySelector('.chat-button').click()",1000);
     }
   };
 } 
