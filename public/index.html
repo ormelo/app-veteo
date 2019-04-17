@@ -440,7 +440,7 @@ function invokeChat() {
        // Typical action to be performed when the document is ready:
        console.log("response: ", JSON.parse(xmlhttp.responseText).body);
        window.chatRes = JSON.parse(xmlhttp.responseText).body;
-       setTimeout("eval(window.chatRes)",2000); 
+       eval(window.chatRes); 
     }
   };
 } 
