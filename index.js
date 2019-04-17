@@ -210,7 +210,7 @@ app.get('/invokeChat', function(request, resp) {
                         });
                     });
 
-                    req2.write("{\"welcomeScreen\":false,\"whiteLabel\":false,\"colors\":{\"background\":\"#21262e\",\"text\":\"#ffffff\",\"theme\":\"#1F8CEB\",\"themeText\":\"#fafafa\",\"responseBackground\":\"#e9eef4\",\"responseText\":\"#646464\"},\"company\":{\"name\":\"chirrp\",\"description\":\"\",\"avatar\":{\"enabled\":true,\"url\":\"\"},\"background\":{\"enabled\":true,\"url\":\"\"},\"social\":{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}},\"chatWindow\":{\"theme\":\"default\"},\"chatButton\":{\"theme\":\"bubble\",\"text\":\"Chat with us!\"},\"storyId\":\""+storyId+"\"}");
+                    req2.write("{\"welcomeScreen\":true,\"whiteLabel\":true,\"colors\":{\"background\":\"#21262e\",\"text\":\"#ffffff\",\"theme\":\"#1F8CEB\",\"themeText\":\"#fafafa\",\"responseBackground\":\"#e9eef4\",\"responseText\":\"#646464\"},\"company\":{\"name\":\"chirrp\",\"description\":\"\",\"avatar\":{\"enabled\":true,\"url\":\"\"},\"background\":{\"enabled\":true,\"url\":\"\"},\"social\":{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}},\"chatWindow\":{\"theme\":\"default\"},\"chatButton\":{\"theme\":\"bubble\",\"text\":\"Chat with us!\"},\"storyId\":\""+storyId+"\"}");
                     req2.end();
                     //callback(undefined, "success");
 
