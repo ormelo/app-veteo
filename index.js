@@ -161,7 +161,8 @@ app.post('/captureChatData', (req, res) => {
     if (req.query.token !== 'ka935tutur') {
         return res.sendStatus(401);
     }
- 
+
+    console.log('webhook data: ', req.body);
     // return challenge
     // return a text response
     const data = {
