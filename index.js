@@ -149,7 +149,7 @@ app.get('/invokeChat', function(request, resp) {
             });
        });
        
-       req.write("{\"name\":\"question1\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\"Do you want to consider “cost and wear style” for your "+request.query["q"]+"?\",\"buttons\":[{\"type\":\"postback\",\"title\":\"Yes\",\"value\":\"\"},{\"type\":\"postback\",\"title\":\"Not really\",\"value\":\"\"}],\"filters\":[],\"delay\":2000},{\"type\":\"webhook\",\"webhookId\":\"5cb8cfecdd2e6ed15f6e37d9\",\"filters\":[]}]}");
+       req.write("{\"name\":\"question1\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\"Do you want to consider “cost and wear style” for your "+request.query["q"]+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"Yes\",\"value\":\"5cb8d2a9f967206ccf90153f\"},{\"type\":\"postback\",\"title\":\"Not really\",\"value\":\"\"}],\"filters\":[],\"delay\":2000}]}");
        req.end();
         
     });
