@@ -787,16 +787,16 @@ function invokeChat() {
     if (this.readyState == 4 && this.status == 200) {
        // Typical action to be performed when the document is ready:
        
-       console.log("response: ", JSON.parse(xmlhttp.responseText).body);
+       console.log("response: ", xmlhttp.responseText);
        window.chatRes = JSON.parse(xmlhttp.responseText).body;
        eval('window.__be=window.__be||{},window.__be.id="5cb8b496dd2e6ec1516e2bea",function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://":"http://")+"cdn.chatbot.com/widget/plugin.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}();'); 
        hideLoader();
-       setTimeout("$('.speech-bubble').show();",1500);
+       setTimeout("$('.speech-bubble').show();",1000);
        window.chatClickTimer = setInterval(function(){
           if(document.querySelector('.chat-button') != null) {
             clearInterval(window.chatClickTimer);
           }
-      },750); 
+      },750);
     }
   };
 } 
