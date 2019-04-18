@@ -156,14 +156,24 @@ app.get('/invokeChat', function(request, resp) {
             
 });
 
-app.get('/captureChatData', (req, res) => {
+app.post('/captureChatData', (req, res) => {
     // check if verification token is correct
     if (req.query.token !== 'ka935tutur') {
         return res.sendStatus(401);
     }
  
     // return challenge
-    return res.end(req.query.challenge);
+    // return a text response
+    const data = {
+        responses: [
+            {
+                type: 'text',
+                elements: ['Hi', 'Hello']
+            }
+        ]
+    };
+ 
+    res.json(data);
 });
 
 app.get('/sendnotif', function(request, response) {
