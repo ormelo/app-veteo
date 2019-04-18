@@ -156,6 +156,16 @@ app.get('/invokeChat', function(request, resp) {
             
 });
 
+app.get('/captureChatData', (req, res) => {
+    // check if verification token is correct
+    if (req.query.token !== 'ka935tutur') {
+        return res.sendStatus(401);
+    }
+ 
+    // return challenge
+    return res.end(req.query.challenge);
+});
+
 app.get('/sendnotif', function(request, response) {
     // VAPID keys should only be generated only once.
     var vapidKeys = webpush.generateVAPIDKeys();
