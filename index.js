@@ -138,9 +138,7 @@ app.get('/invokeChat', function(request, resp) {
 
     
     return fkClient.doKeywordSearch(request.query["q"],10).then(function(value){
-        console.log('shpng response.... ', value);
         var productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
-        console.log('options... ', options);
         resp.send(productTitle);
     });
             
