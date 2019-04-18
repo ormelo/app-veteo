@@ -210,8 +210,9 @@ app.get('/invokeChat', function(request, resp) {
                         });
                     });
 
-                    req2.write("{\"welcomeScreen\":false,\"whiteLabel\":false,\"colors\":{\"background\":\"#21262e\",\"text\":\"#ffffff\",\"theme\":\"#1F8CEB\",\"themeText\":\"#fafafa\",\"responseBackground\":\"#e9eef4\",\"responseText\":\"#646464\"},\"company\":{\"name\":\"chirrp\",\"description\":\"\",\"background\":{\"enabled\":false,\"url\":\"\"},\"social\":{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}},\"chatWindow\":{\"theme\":\"default\"},\"chatButton\":{\"theme\":\"bubble\",\"text\":\"Chat with us!\"},\"storyId\":"+storyId+"}");
+                    req2.write("{\"welcomeScreen\":false,\"whiteLabel\":false,\"colors\":{\"background\":\"#21262e\",\"text\":\"#ffffff\",\"theme\":\"#1F8CEB\",\"themeText\":\"#fafafa\",\"responseBackground\":\"#e9eef4\",\"responseText\":\"#646464\"},\"company\":{\"name\":\"Chirrp\",\"description\":\"Share your needs in under 30 seconds to research '"+request.query["q"]+"'\",\"avatar\":{\"enabled\":false,\"url\":\"\"},\"background\":{\"enabled\":false,\"url\":\"\"},\"social\":{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}},\"chatWindow\":{\"theme\":\"default\"},\"chatButton\":{\"theme\":\"bubble\",\"text\":\"Chat with us!\"},\"storyId\":"+storyId+"}");
                     req2.end();
+                    
                     //callback(undefined, "success");
 
                 });
