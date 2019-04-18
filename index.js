@@ -162,7 +162,7 @@ app.post('/captureChatData', (req, res) => {
         return res.sendStatus(401);
     }
 
-    console.log('webhook data: ', req.body);
+    console.log('webhook data: ', JSON.stringify(req.body));
     // return challenge
     // return a text response
     const data = {
