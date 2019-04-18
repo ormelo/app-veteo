@@ -789,7 +789,7 @@ function invokeChat() {
        
        console.log("response: ", JSON.parse(xmlhttp.responseText).body);
        window.chatRes = JSON.parse(xmlhttp.responseText).body;
-       eval(window.chatRes); 
+       eval('window.__be=window.__be||{},window.__be.id="5cb8b496dd2e6ec1516e2bea",function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://":"http://")+"cdn.chatbot.com/widget/plugin.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}();'); 
        hideLoader();
        setTimeout("$('.speech-bubble').show();",1500);
        window.chatClickTimer = setInterval(function(){
