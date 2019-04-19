@@ -97,7 +97,7 @@ app.get('/home', function(request, response) {
   response.sendFile(path.resolve(__dirname, 'public', 'home.html'));
 });
 
-function updateQuestion(interactionId, num, question, outputStr, resp) {
+function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal) {
   var options = {
         "method": "PUT",
         "hostname": "api.chatbot.com",
@@ -129,7 +129,7 @@ function updateQuestion(interactionId, num, question, outputStr, resp) {
           });
        });
        
-       req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\"5cb8d781dd2e6ef9bb6e3b3d\"},{\"type\":\"postback\",\"title\":\"Not really\",\"value\":\"\"}],\"filters\":[],\"delay\":2000}]}");
+       req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\""+gotoVal+"\"},{\"type\":\"postback\",\"title\":\"Not really\",\"value\":\"\"}],\"filters\":[],\"delay\":2000}]}");
        req.end();
 }
 
@@ -206,21 +206,21 @@ app.get('/invokeChat', function(request, resp) {
           let q1 = constructQuestion(questionNum, shoppingSearchSpecs[0], quickQuestionTemplates);
           console.log('question 1: ', q1.question);
 
-          updateQuestion('5cb8c5f1f967202ea5900e2f',1, q1.question, productTitle, resp);
+          updateQuestion('5cb8c5f1f967202ea5900e2f',1, q1.question, productTitle, resp, "5cb8d781dd2e6ef9bb6e3b3d");
         }
         if(shoppingSearchSpecs.length >= 2) {
           questionNum = questionNum == 0 ? 1 : 0;
           let q2 = constructQuestion(questionNum, shoppingSearchSpecs[1], quickQuestionTemplates);
           console.log('question 2: ', q2.question);
 
-          updateQuestion('5cb98762f967201188903bea',2, q2.question, productTitle, resp);
+          updateQuestion('5cb98762f967201188903bea',2, q2.question, productTitle, resp, "5cb9d13ff96720733d905af6");
         }
         if(shoppingSearchSpecs.length >= 3) {
-          questionNum = 3;
+          questionNum = 2;
           let q3 = constructQuestion(questionNum, shoppingSearchSpecs[2], quickQuestionTemplates);
           console.log('question 3: ', q3.question);
 
-          updateQuestion('5cb9d15edd2e6eb11b6e78f8',3, q3.question, productTitle, resp);
+          updateQuestion('5cb9d15edd2e6eb11b6e78f8',3, q3.question, productTitle, resp, "5cb9d13ff96720733d905af6");
         }
         resp.send("success");
 
