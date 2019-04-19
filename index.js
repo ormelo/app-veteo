@@ -216,9 +216,11 @@ app.get('/invokeChat', function(request, resp) {
           updateQuestion('5cb98762f967201188903bea',2, q2.question, productTitle, resp);
         }
         if(shoppingSearchSpecs.length >= 3) {
-          questionNum = 2;
+          questionNum = 3;
           let q3 = constructQuestion(questionNum, shoppingSearchSpecs[2], quickQuestionTemplates);
           console.log('question 3: ', q3.question);
+
+          updateQuestion('5cb9d15edd2e6eb11b6e78f8',2, q2.question, productTitle, resp);
         }
         resp.send("success");
 
