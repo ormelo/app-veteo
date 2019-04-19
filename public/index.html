@@ -19,6 +19,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#ffffff">
+<meta http-equiv="Pragma" content="no-cache">
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
@@ -683,7 +684,7 @@ td {
   margin: 0 auto;
   left: 0;
   right: 0;
-  margin-top: 25%;
+  margin-top: 30%;
   opacity: 0.2;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
@@ -823,6 +824,22 @@ td {
     }
   }
 
+  #startNewSearch:after {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    background: #fff;
+    height: 50px;
+    width: 402px;
+    z-index: -1;
+    -webkit-transform: translateX(-280px);
+    transform: translateX(-280px);
+    -webkit-transition: -webkit-transform 400ms ease-in;
+    transition: -webkit-transform 400ms ease-in;
+    transition: transform 400ms ease-in;
+    transition: transform 400ms ease-in, -webkit-transform 400ms ease-in;
+  }
+
 </style>
 </head>
 
@@ -843,7 +860,7 @@ td {
   <div class="prod-container city"></div>
   <div class="button-container">
     
-    <input id="query" type="text" style="font-family:'f';height: 47px;width: 100%;font-size: 20px;padding: 12px;border: 2px solid #9fa4af;border-radius: 37px;margin-top: -10px;padding-right: 75px;z-index: 1;" value="smartphones" />
+    <input id="query" type="text" style="height: 47px;width: 100%;font-size: 20px;padding: 12px;border: 2px solid #9fa4af;border-radius: 37px;margin-top: -10px;padding-right: 75px;z-index: 1;" value="smartphones" />
     <a id="cta" href="#" onclick="invokeChat()" class="btn" style="width: 73px;position: relative;float: right;right: -6px;bottom: 47px;height: 47px;z-index: 1;"><span>Go</span></a>
   </div>
 
@@ -867,6 +884,13 @@ td {
     
 </div>
 
+<a id="startNewSearch" href="/" onclick="invokeChat()" class="btn" style="width: 226px;position: absolute;float: left;right: -6px;bottom: 47px;height: 51px;z-index: 1;border-radius: 6px;left: 20px;top: 78px;box-shadow: rgba(0, 0, 0, 0.18) 0px 13px 25px -12px;border: 1px solid #669adf;color: #669adf;display: none;"><span><b style="
+    font-size: 18px;
+    font-family: Quicksand;
+    left: -28px;
+    position: relative;
+    color: #669adf;
+">&lt;</b>Back to Search</span></a>
 
 <div id="box" class="center-img"><img src="sc/chirrpbird.png" style="width: 137px;"></div>
 
@@ -987,6 +1011,7 @@ function hideMainContent() {
 
 function hideLoader() {
   $('.center-img').show();
+  setTimeout("$('#startNewSearch').show();",1500);
   $('.loading-container').hide();
   $('#background-wrap').hide();
 }
@@ -1001,7 +1026,7 @@ function invokeChat() {
       // code for old IE browsers
       xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
-  xmlhttp.open("GET", window.location.protocol+"//www.chirrp.in/invokeChat?q="+document.getElementById('query').value, true);
+  xmlhttp.open("GET", window.location.protocol+"//localhost:5000/invokeChat?q="+document.getElementById('query').value, true);
   xmlhttp.send(null);
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -1009,7 +1034,8 @@ function invokeChat() {
        
        console.log("response: ", xmlhttp.responseText);
        window.chatRes = xmlhttp.responseText;
-       eval('window.__be=window.__be||{},window.__be.id="5cb8b496dd2e6ec1516e2bea",function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://":"http://")+"cdn.chatbot.com/widget/plugin.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}();'); 
+       eval('window.__be=null'); 
+       eval("window.__be=window.__be ||{}; window.__be.id='5cb8b496dd2e6ec1516e2bea'; (function(){var be=document.createElement('script'); be.type='text/javascript'; be.async=false; be.src=('https:'==document.location.protocol ? 'https://' : 'http://') + 'cdn.chatbot.com/widget/plugin.js'; var s=document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(be, s);})();"); 
        hideLoader();
        setTimeout("$('.speech-bubble').show();",1000);
        window.chatClickTimer = setInterval(function(){
@@ -1030,7 +1056,7 @@ function fetchRecentlyViewed() {
       // code for old IE browsers
       xmlhttp1 = new ActiveXObject("Microsoft.XMLHTTP");
   }
-  xmlhttp1.open("GET", window.location.protocol+"//www.chirrp.in/getRecentlyResearched", true);
+  xmlhttp1.open("GET", window.location.protocol+"//localhost:5000/getRecentlyResearched", true);
   xmlhttp1.send(null);
   xmlhttp1.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
