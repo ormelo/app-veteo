@@ -888,7 +888,7 @@ function fetchRecentlyViewed() {
        for(var i in imgs) {
         var imgElem = document.createElement('div');
         imgElem.setAttribute('class','slide');
-        imgElem.innerHTML = '<img src="'+imgs[i]+'" />'
+        imgElem.innerHTML = '<img style="width: 200px" src="'+imgs[i]+'" />'
         document.querySelector('.slide-track').appendChild(imgElem);
        }
     }

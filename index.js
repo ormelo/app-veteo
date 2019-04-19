@@ -184,7 +184,7 @@ app.get('/invokeChat', function(request, resp) {
     return fkClient.doKeywordSearch(request.query["q"],10).then(function(value){
         productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
         try {
-          let productImg = JSON.parse(value.body).products[0].productBaseInfoV1.imageUrls['200x200'];
+          let productImg = JSON.parse(value.body).products[0].productBaseInfoV1.imageUrls['800x800'];
           if (productImg && productImg!=null && productImg!='') {
             if(recentlyResearchedImgs.length >= 5) {
               recentlyResearchedImgs = [];
