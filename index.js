@@ -95,62 +95,62 @@ app.get('/home', function(request, response) {
   response.sendFile(path.resolve(__dirname, 'public', 'home.html'));
 });
 
-app.get('/invokeChat', function(request, resp) {
-  const response = {
-        statusCode: 200,
-        body: request.query.q,
-    };
-    let body = "";
-    // if (event.body !== null && event.body !== undefined) {
-    //     body = JSON.parse(event.body)
-    //     //your code
-    // }
-
-    //create chatbot
-    var myUUID = uuid();
-    var storyId = '';
-    var integrationId = '';
-    var integrationScript = undefined;
-    console.log('myUUID: ',myUUID);
-
-    var options = {
+function updateQuestion1(interactionId, question, outputStr, resp) {
+  var options = {
         "method": "PUT",
         "hostname": "api.chatbot.com",
         "port": null,
-        "path": "/stories/5cb8b496f96720dfac900749/interactions/5cb8c5f1f967202ea5900e2f",
+        "path": "/stories/5cb8b496f96720dfac900749/interactions/"+interactionId,
         "headers": {
             "content-type": "application/json",
             "authorization": "Bearer "+DEVELOPER_ACCESS_TOKEN
         }
     };
 
-
-    
-    return fkClient.doKeywordSearch(request.query["q"],10).then(function(value){
-        var productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
-
-        var req = http.request(options, function (res) {
+    var req = http.request(options, function (res) {
         var chunks = [];
         res.on("data", function (chunk) {
             console.log('data: ', chunk);
             chunks.push(chunk);
-        });
+        });   
 
-          res.on("end", function () {
-              var body = Buffer.concat(chunks);
-              console.log('resp body: ', body.toString());
-              storyId = JSON.parse(body.toString()).id;
-              console.log('storyId: ', storyId);
-              let output = {
-                  statusCode: 200,
-                  body: storyId,
-               };
-              resp.send(productTitle);
-            });
+        res.on("end", function () {
+            var body = Buffer.concat(chunks);
+            console.log('resp body: ', body.toString());
+            storyId = JSON.parse(body.toString()).id;
+            console.log('storyId: ', storyId);
+            let output = {
+                statusCode: 200,
+                body: storyId,
+             };
+            resp.send(outputStr);
+          });
        });
        
-       req.write("{\"name\":\"question1\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\"Do you want to consider “cost and wear style” for your "+request.query["q"]+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\"5cb8d781dd2e6ef9bb6e3b3d\"},{\"type\":\"postback\",\"title\":\"Not really\",\"value\":\"\"}],\"filters\":[],\"delay\":2000}]}");
+       req.write("{\"name\":\"question1\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\"5cb8d781dd2e6ef9bb6e3b3d\"},{\"type\":\"postback\",\"title\":\"Not really\",\"value\":\"\"}],\"filters\":[],\"delay\":2000}]}");
        req.end();
+}
+
+app.get('/invokeChat', function(request, resp) {
+  const response = {
+        statusCode: 200,
+        body: request.query.q,
+    };
+    let body = "";
+    var myUUID = uuid();
+    var storyId = '';
+    var integrationId = '';
+    var integrationScript = undefined;
+    console.log('myUUID: ',myUUID);
+
+    
+    
+    return fkClient.doKeywordSearch(request.query["q"],10).then(function(value){
+        var productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
+
+        updateQuestion1('5cb8c5f1f967202ea5900e2f', 
+          'Do you want to consider “cost and wear style” for your '+request.query["q"],
+          productTitle, resp);
         
     });
             
