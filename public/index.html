@@ -22,6 +22,7 @@
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+@import url('https://fonts.googleapis.com/css?family=Righteous');
 *{
     box-sizing: border-box;
     margin: 0;
@@ -56,7 +57,7 @@
   right: 20px;
 }
 .logoFont {
-    font-family: f;
+    font-family: 'Righteous', cursive;
     font-size: 32px;
     position: absolute;
     margin-top: 3px;
@@ -670,7 +671,7 @@ td {
   -webkit-animation: scroll 40s linear infinite;
           animation: scroll 40s linear infinite;
   display: flex;
-  width: calc(250px * 5);
+  width: calc(250px * 3);
 }
 .slider .slide {
   height: 100px;
@@ -888,7 +889,7 @@ function fetchRecentlyViewed() {
        for(var i in imgs) {
         var imgElem = document.createElement('div');
         imgElem.setAttribute('class','slide');
-        imgElem.innerHTML = '<img style="width: 200px" src="'+imgs[i]+'" />'
+        imgElem.innerHTML = '<img style="width: 100px" src="'+imgs[i]+'" />'
         document.querySelector('.slide-track').appendChild(imgElem);
        }
     }
