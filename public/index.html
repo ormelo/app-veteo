@@ -781,7 +781,7 @@ function invokeChat() {
       // code for old IE browsers
       xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
-  xmlhttp.open("GET", window.location.protocol+"//localhost:5000/invokeChat?q="+document.getElementById('query').value, true);
+  xmlhttp.open("GET", window.location.protocol+"//www.chirrp.in/invokeChat?q="+document.getElementById('query').value, true);
   xmlhttp.send(null);
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
