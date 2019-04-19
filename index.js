@@ -220,7 +220,7 @@ app.get('/invokeChat', function(request, resp) {
           let q3 = constructQuestion(questionNum, shoppingSearchSpecs[2], quickQuestionTemplates);
           console.log('question 3: ', q3.question);
 
-          updateQuestion('5cb9d15edd2e6eb11b6e78f8',2, q2.question, productTitle, resp);
+          updateQuestion('5cb9d15edd2e6eb11b6e78f8',2, q3.question, productTitle, resp);
         }
         resp.send("success");
 
