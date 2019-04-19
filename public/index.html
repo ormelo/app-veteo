@@ -843,6 +843,20 @@ td {
     transition: transform 400ms ease-in, -webkit-transform 400ms ease-in;
   }
 
+  .bubble-left:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 86%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: #669adf;
+    border-bottom: 0;
+    margin-left: -231px;
+    margin-bottom: -20px;
+}
+
 </style>
 </head>
 
@@ -1019,6 +1033,20 @@ function hideLoader() {
   $('#background-wrap').hide();
 }
 
+function freshSearchMsg() {
+  var el = document.createElement('div');
+  el.setAttribute('class', 'speech-bubble bubble-left');
+  el.setAttribute('id', 'freshSearch');
+  el.setAttribute('style','display: block;position: absolute;z-index: 9999999;bottom: 90px;left: -18px;');
+  el.innerHTML = '<span>Looks like you want to start fresh search. Type exit and enter to start fresh search.</span>';
+  document.querySelector('#chatbot-chat').appendChild(el);
+}
+
+function hideFreshSearchMsg() {
+  $('#freshSearch').remove();  
+}
+
+
 function invokeChat() {
   hideMainContent();
   var xmlhttp = null;
@@ -1029,6 +1057,11 @@ function invokeChat() {
       // code for old IE browsers
       xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
+  if(sessionStorage.getItem('query') != null && sessionStorage.getItem('query') != document.getElementById('query').value) {
+    setTimeout(freshSearchMsg, 4000);
+    setTimeout(hideFreshSearchMsg, 14000);
+  }
+  sessionStorage.setItem('query', document.getElementById('query').value);
   xmlhttp.open("GET", window.location.protocol+"//www.chirrp.in/invokeChat?q="+document.getElementById('query').value, true);
   xmlhttp.send(null);
   xmlhttp.onreadystatechange = function() {
