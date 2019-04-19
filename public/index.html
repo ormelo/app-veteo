@@ -676,6 +676,105 @@ td {
   width: 250px;
   margin-top: 30px;
 }
+.center-img {
+  display: none;
+  position: relative;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  margin-top: 45%;
+  opacity: 0.2;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+#box {
+  position: absolute;
+  text-align: center;
+  -moz-animation: jump 4s infinite ease-in-out;
+  -webkit-animation: jump 4s infinite ease-in-out;
+}
+
+#shadow {
+  position: absolute;
+  top: 190px;
+  height: 20px;
+  border-radius: 30px;
+  left: -200px;
+  background: transparent;
+  width: 200px;
+  box-shadow: 200px 0 10px 2px rgba(0, 0, 0, 0.4);
+  margin-left: 0;
+  opacity: 1;
+  -moz-animation: shadowSize 2s infinite ease-in-out;
+  -webkit-animation: shadowSize 2s infinite ease-in-out;
+}
+
+@-moz-keyframes jump {
+  0% {
+    top: 100px;
+  }
+  50% {
+    top: 25px;
+  }
+  100% {
+    top: 100px;
+  }
+}
+
+@-webkit-keyframes jump {
+  0% {
+    top: 100px;
+  }
+  50% {
+    top: 25px;
+  }
+  100% {
+    top: 100px;
+  }
+}
+
+@-moz-keyframes shadowSize {
+  0% {
+    width: 200px;
+    margin-left: 0px;
+    opacity: 1;
+    box-shadow: 200px 0 10px rgba(0, 0, 0, 0.7);
+  }
+  50% {
+    width: 150px;
+    margin-left: 25px;
+    opacity: 0.3;
+    box-shadow: 200px 0 30px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    width: 200px;
+    margin-left: 0px;
+    opacity: 1;
+    box-shadow: 200px 0 10px rgba(0, 0, 0, 0.7);
+  }
+}
+
+@-webkit-keyframes shadowSize {
+  0% {
+    width: 200px;
+    margin-left: 0px;
+    opacity: 1;
+    box-shadow: 200px 0 10px rgba(0, 0, 0, 0.7);
+  }
+  50% {
+    width: 150px;
+    margin-left: 25px;
+    opacity: 0.3;
+    box-shadow: 200px 0 30px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    width: 200px;
+    margin-left: 0px;
+    opacity: 1;
+    box-shadow: 200px 0 10px rgba(0, 0, 0, 0.7);
+  }
+}
 
 </style>
 </head>
@@ -719,6 +818,9 @@ td {
       
     
 </div>
+
+
+<div id="box" class="center-img"><img src="sc/chirrpbird.png" style="width: 137px;"></div>
 
 <div class="second" >Gazillion shopping decisions! <br>One bot.
 <br><br>
@@ -836,6 +938,7 @@ function hideMainContent() {
 }
 
 function hideLoader() {
+  $('.center-img').show();
   $('.loading-container').hide();
   $('#background-wrap').hide();
 }
@@ -850,7 +953,7 @@ function invokeChat() {
       // code for old IE browsers
       xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
-  xmlhttp.open("GET", window.location.protocol+"//wwww.chirrp.in/invokeChat?q="+document.getElementById('query').value, true);
+  xmlhttp.open("GET", window.location.protocol+"//www.chirrp.in/invokeChat?q="+document.getElementById('query').value, true);
   xmlhttp.send(null);
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
