@@ -138,11 +138,9 @@ function constructQuestion(questionNum, specObj, quickQuestionTemplates) {
     console.log('specObj.values.length: ', specObj.values.length); 
     if(specObj.values.length == 1) {
       suffix = specName + ' like ' + specObj.values[0].key;
-    } else if(specObj.values.length == 2) {
+    } else if(specObj.values.length >= 2) {
       suffix = specName + ' like ' + specObj.values[0].key + " and " + specObj.values[1].key;
-    } else if(specObj.values.length >= 3) {
-      suffix = specName + ' like ' + specObj.values[0].key + ", " + specObj.values[1].key + " and " + specObj.values[2].key;
-    }
+    } 
     
     let question = quickQuestionTemplates[questionNum] + suffix;
 
