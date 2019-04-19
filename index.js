@@ -95,7 +95,7 @@ app.get('/home', function(request, response) {
   response.sendFile(path.resolve(__dirname, 'public', 'home.html'));
 });
 
-function updateQuestion1(interactionId, question, outputStr, resp) {
+function updateQuestion(interactionId, question, outputStr, resp) {
   var options = {
         "method": "PUT",
         "hostname": "api.chatbot.com",
@@ -131,6 +131,28 @@ function updateQuestion1(interactionId, question, outputStr, resp) {
        req.end();
 }
 
+function constructQuestion(questionNum, specObj, quickQuestionTemplates) {
+    let specName = specObj.key; //{key: "Display Features", values: Array(6)}
+    let suffix = "";
+     
+    console.log('specObj.values.length: ', specObj.values.length); 
+    if(specObj.values.length == 1) {
+      suffix = specName + ' like ' + specObj.values[0].key;
+    } else if(specObj.values.length == 2) {
+      suffix = specName + ' like ' + specObj.values[0].key + " and " + specObj.values[1].key;
+    } else if(specObj.values.length >= 3) {
+      suffix = specName + ' like ' + specObj.values[0].key + ", " + specObj.values[1].key + " and " + specObj.values[2].key;
+    }
+    
+    let question = quickQuestionTemplates[questionNum] + suffix;
+
+    if(quickQuestionTemplates[questionNum].indexOf('Lot of online users considered') !== -1) {
+      question = question + '. Do you wish to add these to your search'
+    }
+    question += '?';
+    return {qnum: questionNum, question};
+}
+
 app.get('/invokeChat', function(request, resp) {
   const response = {
         statusCode: 200,
@@ -141,17 +163,46 @@ app.get('/invokeChat', function(request, resp) {
     var storyId = '';
     var integrationId = '';
     var integrationScript = undefined;
-    console.log('myUUID: ',myUUID);
 
+    let productTitle = '';
+    let shoppingSearchSpecs = [];
+    let reviewedSpecs = [];
+    let productTitleForReviewSearch = '';
+    let productReviewPageLink = '';
+    let productReviewText = '';
+    let specRelevanceArray = [{name: '', relevance: 3}]; //spec name string, value score
+    let quickQuestionTemplates = ["Do you want to consider ","Lot of online users considered ", "How about "];
+    let featureSuggestTemplate ="Also, does any of the below features sound relevant";
+    console.log('myUUID: ',myUUID);
+    let questionNum = 0;
     
     
     return fkClient.doKeywordSearch(request.query["q"],10).then(function(value){
-        var productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
-
-        updateQuestion1('5cb8c5f1f967202ea5900e2f', 
-          'Do you want to consider “cost and wear style” for your '+request.query["q"],
-          productTitle, resp);
+        productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
+        console.log('Body: ', value.body);
         
+        shoppingSearchSpecs = JSON.parse(value.body).products[0].categorySpecificInfoV1.specificationList;
+        shoppingSearchSpecs.shift();
+        if(shoppingSearchSpecs.length >= 1) {
+          let questionNum = Math.floor(Math.random() * 2);
+          let q1 = constructQuestion(questionNum, shoppingSearchSpecs[0], quickQuestionTemplates);
+          console.log('question 1: ', q1.question);
+
+          updateQuestion('5cb8c5f1f967202ea5900e2f', q1.question, productTitle, resp);
+        }
+        if(shoppingSearchSpecs.length >= 2) {
+          questionNum = questionNum == 0 ? 1 : 0;
+          let q2 = constructQuestion(questionNum, shoppingSearchSpecs[1], quickQuestionTemplates);
+          console.log('question 2: ', q2.question);
+
+          updateQuestion('5cb98762f967201188903bea', q2.question, productTitle, resp);
+        }
+        if(shoppingSearchSpecs.length >= 3) {
+          questionNum = 2;
+          let q3 = constructQuestion(questionNum, shoppingSearchSpecs[2], quickQuestionTemplates);
+          console.log('question 3: ', q3.question);
+        }
+
     });
             
 });
@@ -169,7 +220,7 @@ app.post('/captureChatData', (req, res) => {
         responses: [
             {
                 type: 'text',
-                elements: ['Hi', 'Hello']
+                elements: []
             }
         ]
     };
