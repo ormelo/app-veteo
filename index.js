@@ -14,7 +14,7 @@ var uuid = require('uuid-v4');
 var http = require("https");
 var DEVELOPER_ACCESS_TOKEN = '7311e67496773579a7924b37e2086b32e68de0a0298890ae236b598d507f0b40';
 
-var recentlyResearchedImgs = ["https://rukminim1.flixcart.com/image/800/800/jt1tq4w0/smart-band-tag/r/d/b/waterproof-smart-m3-band-black-01-mezire-original-imafccx5gsdhxuh5.jpeg?q=90", "https://rukminim1.flixcart.com/image/800/800/jtrjngw0/mobile/2/t/v/realme-3-rmx1825-original-imaferd5uzuyxrsv.jpeg?q=90"];
+var recentlyResearchedImgs = ["https://rukminim1.flixcart.com/image/800/800/jt1tq4w0/smart-band-tag/r/d/b/waterproof-smart-m3-band-black-01-mezire-original-imafccx5gsdhxuh5.jpeg?q=90", "https://rukminim1.flixcart.com/image/800/800/jtrjngw0/mobile/2/t/v/realme-3-rmx1825-original-imaferd5uzuyxrsv.jpeg?q=90","https://rukminim1.flixcart.com/image/800/800/jfsknm80/tablet/f/m/c/apple-mrjp2hn-a-original-imaf46khz8vftwnf.jpeg?q=90","https://rukminim1.flixcart.com/image/800/800/j3lwh3k0/power-bank/y/x/t/power-bank-it-pb-20k-poly-intex-original-imaeupg8dfgtsrfw.jpeg?q=90","https://rukminim1.flixcart.com/image/800/800/jfsknm80/smart-assistant/j/q/h/home-mini-ghmini-chalk-google-original-imaf46ev9a8xkahw.jpeg?q=90"];
 
 var fkClient = new client({
     trackingId:"attiristf",
@@ -185,7 +185,7 @@ app.get('/invokeChat', function(request, resp) {
         productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
         try {
           let productImg = JSON.parse(value.body).products[0].productBaseInfoV1.imageUrls['800x800'];
-          if (productImg && productImg!=null && productImg!='') {
+          /*if (productImg && productImg!=null && productImg!='') {
             if(recentlyResearchedImgs.length >= 5) {
               recentlyResearchedImgs = [];
               recentlyResearchedImgs.push(productImg);
@@ -193,7 +193,7 @@ app.get('/invokeChat', function(request, resp) {
               recentlyResearchedImgs.push(productImg);
             }
             
-          }
+          }*/
         }catch(e){
           console.log('Error loading researched images.');
         }

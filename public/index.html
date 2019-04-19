@@ -22,7 +22,6 @@
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
-@import url('https://fonts.googleapis.com/css?family=Righteous');
 *{
     box-sizing: border-box;
     margin: 0;
@@ -57,7 +56,7 @@
   right: 20px;
 }
 .logoFont {
-    font-family: 'Righteous', cursive;
+    font-family: f;
     font-size: 32px;
     position: absolute;
     margin-top: 3px;
@@ -626,8 +625,8 @@ td {
             transform: translateX(0);
   }
   100% {
-    -webkit-transform: translateX(calc(-250px * 7));
-            transform: translateX(calc(-250px * 7));
+    -webkit-transform: translateX(calc(-250px * 4));
+            transform: translateX(calc(-250px * 4));
   }
 }
 
@@ -637,45 +636,45 @@ td {
             transform: translateX(0);
   }
   100% {
-    -webkit-transform: translateX(calc(-250px * 7));
-            transform: translateX(calc(-250px * 7));
+    -webkit-transform: translateX(calc(-250px * 4));
+            transform: translateX(calc(-250px * 4));
   }
 }
 .slider {
-  background: transparent;
-  height: 260px;
+  height: 247px;
   margin: auto;
   overflow: hidden;
   position: relative;
-  width: 96%;
+  width: 960px;
 }
 .slider::before, .slider::after {
-    background: linear-gradient(to right, wishliste 0%, rgba(255, 255, 255, 0) 75%);
-    content: "";
-    height: 100px;
-    position: absolute;
-    width: 200px;
-    z-index: 2;
+  background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+  content: "";
+  height: 247px;
+  position: absolute;
+  width: 200px;
+  z-index: 1;
 }
 .slider::after {
   right: 0;
   top: 0;
   -webkit-transform: rotateZ(180deg);
-          transform: rotateZ(180deg);
+  transform: rotateZ(180deg);
 }
 .slider::before {
   left: 0;
   top: 0;
 }
 .slider .slide-track {
-  -webkit-animation: scroll 40s linear infinite;
-          animation: scroll 40s linear infinite;
+  -webkit-animation: scroll 15s linear infinite;
+          animation: scroll 15s linear infinite;
   display: flex;
-  width: calc(250px * 3);
+  width: calc(250px * 14);
 }
 .slider .slide {
   height: 100px;
   width: 250px;
+  margin-top: 30px;
 }
 
 </style>
@@ -741,7 +740,7 @@ td {
 <br><br>
 <hr size="1" class="line"/>
 <div class="step" style="width:286px;">Recently researched on Chirrp</div>
-<div class="step-desc" style="min-height: 200px">
+<div class="step-desc" style="min-height: 340px">
   
 
     <div class="slider">
@@ -851,7 +850,7 @@ function invokeChat() {
       // code for old IE browsers
       xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
-  xmlhttp.open("GET", window.location.protocol+"//www.chirrp.in/invokeChat?q="+document.getElementById('query').value, true);
+  xmlhttp.open("GET", window.location.protocol+"//wwww.chirrp.in/invokeChat?q="+document.getElementById('query').value, true);
   xmlhttp.send(null);
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
