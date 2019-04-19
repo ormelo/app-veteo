@@ -14,6 +14,8 @@ var uuid = require('uuid-v4');
 var http = require("https");
 var DEVELOPER_ACCESS_TOKEN = '7311e67496773579a7924b37e2086b32e68de0a0298890ae236b598d507f0b40';
 
+var recentlyResearchedImgs = ["https://rukminim1.flixcart.com/image/200/200/jt1tq4w0/smart-band-tag/r/d/b/waterproof-smart-m3-band-black-01-mezire-original-imafccx5gsdhxuh5.jpeg?q=90"];
+
 var fkClient = new client({
     trackingId:"attiristf",
     token:"1b6372cefdf64b2cbe7c5d8491d2f528",
@@ -151,6 +153,10 @@ function constructQuestion(questionNum, specObj, quickQuestionTemplates) {
     return {qnum: questionNum, question};
 }
 
+app.get('/getRecentlyResearched', function(request, resp) {
+  resp.send(recentlyResearchedImgs);
+});
+
 app.get('/invokeChat', function(request, resp) {
   const response = {
         statusCode: 200,
@@ -177,6 +183,20 @@ app.get('/invokeChat', function(request, resp) {
     
     return fkClient.doKeywordSearch(request.query["q"],10).then(function(value){
         productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
+        try {
+          let productImg = JSON.parse(value.body).products[0].productBaseInfoV1.imageUrls['200x200'];
+          if (productImg && productImg!=null && productImg!='') {
+            if(recentlyResearchedImgs.length >= 5) {
+              recentlyResearchedImgs = [];
+              recentlyResearchedImgs.push(productImg);
+            } else {
+              recentlyResearchedImgs.push(productImg);
+            }
+            
+          }
+        }catch(e){
+          console.log('Error loading researched images.');
+        }
         console.log('Body: ', value.body);
         
         shoppingSearchSpecs = JSON.parse(value.body).products[0].categorySpecificInfoV1.specificationList;

@@ -618,10 +618,69 @@ td {
   margin-left: -20px;
   margin-bottom: -20px;
 }
+
+@-webkit-keyframes scroll {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc(-250px * 7));
+            transform: translateX(calc(-250px * 7));
+  }
+}
+
+@keyframes scroll {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc(-250px * 7));
+            transform: translateX(calc(-250px * 7));
+  }
+}
+.slider {
+  background: transparent;
+  height: 200px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 96%;
+}
+.slider::before, .slider::after {
+    background: linear-gradient(to right, wishliste 0%, rgba(255, 255, 255, 0) 75%);
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+}
+.slider::after {
+  right: 0;
+  top: 0;
+  -webkit-transform: rotateZ(180deg);
+          transform: rotateZ(180deg);
+}
+.slider::before {
+  left: 0;
+  top: 0;
+}
+.slider .slide-track {
+  -webkit-animation: scroll 40s linear infinite;
+          animation: scroll 40s linear infinite;
+  display: flex;
+  width: calc(250px * 14);
+}
+.slider .slide {
+  height: 100px;
+  width: 250px;
+}
+
 </style>
 </head>
 
-<body>
+<body onLoad="fetchRecentlyViewed()">
 <div class="container fader" id="container">
 <div>
   <div class="logo"><img src="sc/chirrpbird.png" style="width: 37px;margin-left: 109px;margin-top: 4px;
@@ -680,8 +739,18 @@ td {
 <img class="snap" src="sc/wl.png" style="margin-top:40px;width:300px" />
 <br><br>
 <hr size="1" class="line"/>
-<div class="step" style="width:265px;">Shop assured products</div>
-<div class="step-desc" style="min-height: 100px">Find the best deals & buy with Chirrp guarantee!</div>
+<div class="step" style="width:265px;">Recently researched on Chirrp</div>
+<div class="step-desc" style="min-height: 200px">
+  
+
+    <div class="slider">
+    <div class="slide-track">
+      
+    </div>
+  </div>
+
+
+</div>
 <br><br>
 
 <div id="G"></div>
@@ -781,7 +850,7 @@ function invokeChat() {
       // code for old IE browsers
       xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
-  xmlhttp.open("GET", window.location.protocol+"//www.chirrp.in/invokeChat?q="+document.getElementById('query').value, true);
+  xmlhttp.open("GET", window.location.protocol+"//localhost:5000/invokeChat?q="+document.getElementById('query').value, true);
   xmlhttp.send(null);
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -797,6 +866,31 @@ function invokeChat() {
             clearInterval(window.chatClickTimer);
           }
       },750);
+    }
+  };
+}
+
+function fetchRecentlyViewed() {
+  var xmlhttp1 = null;
+  if (window.XMLHttpRequest) {
+      // code for modern browsers
+      xmlhttp1 = new XMLHttpRequest();
+   } else {
+      // code for old IE browsers
+      xmlhttp1 = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp1.open("GET", window.location.protocol+"//localhost:5000/getRecentlyResearched", true);
+  xmlhttp1.send(null);
+  xmlhttp1.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       console.log("response: ", JSON.parse(xmlhttp1.responseText).length);
+       var imgs = JSON.parse(xmlhttp1.responseText);
+       for(var i in imgs) {
+        var imgElem = document.createElement('div');
+        imgElem.setAttribute('class','slide');
+        imgElem.innerHTML = '<img src="'+imgs[i]+'" />'
+        document.querySelector('.slide-track').appendChild(imgElem);
+       }
     }
   };
 } 
