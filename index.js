@@ -97,7 +97,7 @@ app.get('/home', function(request, response) {
   response.sendFile(path.resolve(__dirname, 'public', 'home.html'));
 });
 
-function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal) {
+function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, keywords) {
   var options = {
         "method": "PUT",
         "hostname": "api.chatbot.com",
@@ -129,7 +129,27 @@ function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal) 
           });
        });
        
-       req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\""+gotoVal+"\"},{\"type\":\"postback\",\"title\":\"Not really\",\"value\":\"\"}],\"filters\":[],\"delay\":2000}]}");
+       var buttonStr = '';//[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\""+gotoVal+"\"},{\"type\":\"postback\",\"title\":\"Not really\",\"value\":\"\"}]
+       var buttons = [];
+
+       if(num == 4) {
+         console.log('--keywords--', keywords);
+         for(var i in keywords) {
+            if(i>7){
+              break;
+            }
+            var btn = {type:'goto',title:keywords[i].keyword.substr(0,16)+'...', value: gotoVal};
+            buttons.push(btn);
+         }
+
+         buttonStr = JSON.stringify(buttons);
+         //buttonStr = buttonStr.replace(/"/g, '\\"');
+         console.log('buttonStr: ', buttonStr);
+         req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":"+buttonStr+",\"filters\":[],\"delay\":2000}]}");
+       } else {
+         req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\""+gotoVal+"\"},{\"type\":\"postback\",\"title\":\"Not really\",\"value\":\"\"}],\"filters\":[],\"delay\":2000}]}");
+       }
+       
        req.end();
 }
 
@@ -151,6 +171,130 @@ function constructQuestion(questionNum, specObj, quickQuestionTemplates) {
     }
     question += '?';
     return {qnum: questionNum, question};
+}
+
+function positiveScore(link) {
+  let score = 0;
+  if(link.indexOf('things to condier') != -1 || link.indexOf('factors to condier') != -1 || link.indexOf('guide') != -1)  {
+    score = 10;
+  } else if(link.indexOf('facotrs') != -1 || link.indexOf('consider') != -1 || link.indexOf('keep in mind') != -1) {
+    score = 5;
+  } else {
+    score = 2;
+  }
+  return score;
+}
+
+function negativeScore(link) {
+  let score = 0;
+  if(link.indexOf('hdfc') != -1) {
+    score = 10;
+  } else if(link.indexOf('Where to shop') != -1 || link.indexOf('where to buy') != -1 || link.indexOf('Where to <b>buy') != -1 || link.indexOf('where to <b>buy') != -1) {
+    score = 5;
+  }
+  return score;
+}
+
+function calculateScore(link) {
+  return positiveScore(link) - negativeScore(link);
+}
+
+function getSortOrder(prop) {  
+    return function(a, b) {  
+        if (a[prop] > b[prop]) {  
+            return 1;  
+        } else if (a[prop] < b[prop]) {  
+            return -1;  
+        }  
+        return 0;  
+    }  
+}  
+
+function getBuyingGuideSearchLink(htmlContent) {
+    let linkScore = [];
+    let htmlStr = htmlContent.substr(htmlContent.indexOf('Web results')+'Web results'.length, htmlContent.length);
+    let links = htmlStr.split('<a href="');
+    links.shift();
+    links.shift();
+    links.shift();
+    for (i in links) {
+      let link = links[i].substr(links[i].indexOf('">')+2, links[i].indexOf('</a>'));
+      console.log('links[i]: ', link);
+      let score = calculateScore(link);
+      let ls = {score, link};
+      linkScore.push(ls);
+    }
+    linkScore.sort(getSortOrder("score"))
+    let selectedLink = linkScore[linkScore.length - 1];
+    let finalLink = '';
+    for(var i in links) {
+      if(links[i].indexOf(selectedLink.link) != -1) {
+        finalLink = links[i];
+        break;
+      }
+    }
+    finalLink = finalLink.substr(finalLink.indexOf('url?q=')+6, finalLink.indexOf('&amp')).replace(/&amp;sa/,'');
+    return finalLink; 
+}
+
+function getArticle(q, resp) {
+  var options = {
+        "method": "GET",
+        "hostname": "www.google.co.in",
+        "port": null,
+        "path": "/search?q=what+to+look+for+when+buying+a+"+q+"+in+india"
+    };
+  var req = http.request(options, function (res) {
+        var chunks = [];
+        res.on("data", function (chunk) {
+            console.log('data: ', chunk);
+            chunks.push(chunk);
+        });   
+
+        res.on("end", function () {
+            var body = Buffer.concat(chunks);
+            console.log('resp body: ', body.toString());
+            let buyingGuideSearchLink = getBuyingGuideSearchLink(body.toString());
+            let keywords = getKeywords(q, buyingGuideSearchLink, resp);
+          });
+       });
+       
+       req.end();
+}
+
+function getKeywords(q, url, resp) {
+  var options = {
+        "method": "GET",
+        "hostname": "www.summarizebot.com",
+        "port": null,
+        "path": "/api/summarize?apiKey=2842d14a3a2545d19938a34566dd1e38&size=20&keywords=10&fragments=15&url="+url
+    };
+  var req = http.request(options, function (res) {
+        var chunks = [];
+        res.on("data", function (chunk) {
+            console.log('data: ', chunk);
+            chunks.push(chunk);
+        });   
+
+        res.on("end", function () {
+            var body = Buffer.concat(chunks);
+            console.log('keywords: ', body.toString());
+            //resp.send(body.toString());
+            var keywordsJson = JSON.parse(body.toString());
+            var keywords = keywordsJson[1].keywords;
+            var keywordsArr = [];
+            for (var i in keywords) {
+              if(keywords[i] !== q) {
+                keywordsArr.push(keywords[i]);
+              }
+            }
+            
+            updateQuestion('5cbb2b95dd2e6e9ad36eb5b9',4, "Which of the below features you wish to add to your search?", '', resp, '5cba138af967206581907194', keywordsArr);
+            resp.send(keywordsArr);
+          });
+       });
+       
+       req.end();
 }
 
 app.get('/getRecentlyResearched', function(request, resp) {
@@ -220,9 +364,17 @@ app.get('/invokeChat', function(request, resp) {
           let q3 = constructQuestion(questionNum, shoppingSearchSpecs[2], quickQuestionTemplates);
           console.log('question 3: ', q3.question);
 
-          updateQuestion('5cb9d15edd2e6eb11b6e78f8',3, q3.question, productTitle, resp, "5cba138af967206581907194");
+          updateQuestion('5cb9d15edd2e6eb11b6e78f8',3, q3.question, productTitle, resp, "5cbb2b95dd2e6e9ad36eb5b9");
         }
-        resp.send("success");
+
+        //request to google for "shopping guide" request
+        let q = request.query["q"].indexOf(" ") != -1? request.query["q"].split(' ')[0] : request.query["q"];
+        let articleHTML = getArticle(q, resp) ;
+
+        console.log('articleHTML: ', articleHTML);
+
+
+        //resp.send("success");
 
     });
             
