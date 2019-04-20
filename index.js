@@ -317,7 +317,7 @@ function getKeywords(q, url, resp, productPrice) {
               }
             }
             
-            updateQuestion('5cbb2b95dd2e6e9ad36eb5b9',4, "Which of the below features you wish to add to your search?", '', resp, '5cbb5e27dd2e6e9c5b6ebfb2', keywordsArr);
+            updateQuestion('5cbb2b95dd2e6e9ad36eb5b9',4, "Which of these is a must have for you?", '', resp, '5cbb5e27dd2e6e9c5b6ebfb2', keywordsArr);
             
             getBudget(resp, productPrice);
           });
