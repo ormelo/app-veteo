@@ -97,7 +97,7 @@ app.get('/home', function(request, response) {
   response.sendFile(path.resolve(__dirname, 'public', 'home.html'));
 });
 
-function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, keywords) {
+function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, keywords, budgetArr) {
   var options = {
         "method": "PUT",
         "hostname": "api.chatbot.com",
@@ -139,6 +139,17 @@ function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, 
               break;
             }
             var btn = {type:'goto',title:keywords[i].keyword.substr(0,16)+'...', value: gotoVal};
+            buttons.push(btn);
+         }
+
+         buttonStr = JSON.stringify(buttons);
+         //buttonStr = buttonStr.replace(/"/g, '\\"');
+         console.log('buttonStr: ', buttonStr);
+         req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":"+buttonStr+",\"filters\":[],\"delay\":2000}]}");
+       } else if (num == 5) {
+         console.log('--budgetArr--', budgetArr);
+         for(var i in budgetArr) {
+            var btn = {type:'goto',title:budgetArr[i], value: gotoVal};
             buttons.push(btn);
          }
 
@@ -237,7 +248,7 @@ function getBuyingGuideSearchLink(htmlContent) {
     return finalLink; 
 }
 
-function getArticle(q, resp) {
+function getArticle(q, resp, productPrice) {
   var options = {
         "method": "GET",
         "hostname": "www.google.co.in",
@@ -255,14 +266,31 @@ function getArticle(q, resp) {
             var body = Buffer.concat(chunks);
             console.log('resp body: ', body.toString());
             let buyingGuideSearchLink = getBuyingGuideSearchLink(body.toString());
-            let keywords = getKeywords(q, buyingGuideSearchLink, resp);
+            let keywords = getKeywords(q, buyingGuideSearchLink, resp, productPrice);
           });
        });
        
        req.end();
 }
 
-function getKeywords(q, url, resp) {
+function getBudget(resp, productPrice) {
+    let budgetRanges = [];
+    if(productPrice < 5000) {
+      budgetRanges.push('1 to 2k');budgetRanges.push('2 to 3k');budgetRanges.push('3 to 4k');budgetRanges.push('4000+');
+    } else if(productPrice >= 5000 && productPrice < 10000) {
+      budgetRanges.push('2 to 5k');budgetRanges.push('5 to 8k');budgetRanges.push('8 to 12k');budgetRanges.push('12000+');
+    } else if(productPrice >= 10000 && productPrice < 25000) {
+      budgetRanges.push('5 to 10k');budgetRanges.push('10 to 15k');budgetRanges.push('15 to 20k');budgetRanges.push('20k+');
+    } else if(productPrice >= 20000 && productPrice < 50000) {
+      budgetRanges.push('15 to 25k');budgetRanges.push('25 to 35k');budgetRanges.push('35 to 45k');budgetRanges.push('45k++');
+    } else if(productPrice >= 50000) {
+      budgetRanges.push('40 to 60k');budgetRanges.push('60 to 80k');budgetRanges.push('80 to 1Lakh');budgetRanges.push('1Lakh+');
+    }
+    updateQuestion('5cbb5ca8dd2e6e52316ebf74',5, "Sure. what’s the budget range you’re looking at?", '', resp, '5cbb64b5dd2e6e840e6ec0ca', [], budgetRanges);
+    resp.send(budgetRanges);
+}
+
+function getKeywords(q, url, resp, productPrice) {
   var options = {
         "method": "GET",
         "hostname": "www.summarizebot.com",
@@ -289,8 +317,9 @@ function getKeywords(q, url, resp) {
               }
             }
             
-            updateQuestion('5cbb2b95dd2e6e9ad36eb5b9',4, "Which of the below features you wish to add to your search?", '', resp, '5cba138af967206581907194', keywordsArr);
-            resp.send(keywordsArr);
+            updateQuestion('5cbb2b95dd2e6e9ad36eb5b9',4, "Which of the below features you wish to add to your search?", '', resp, '5cbb5e27dd2e6e9c5b6ebfb2', keywordsArr);
+            
+            getBudget(resp, productPrice);
           });
        });
        
@@ -313,6 +342,7 @@ app.get('/invokeChat', function(request, resp) {
     var integrationScript = undefined;
 
     let productTitle = '';
+    let productPrice = '';
     let shoppingSearchSpecs = [];
     let reviewedSpecs = [];
     let productTitleForReviewSearch = '';
@@ -327,6 +357,7 @@ app.get('/invokeChat', function(request, resp) {
     
     return fkClient.doKeywordSearch(request.query["q"],10).then(function(value){
         productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
+        productPrice = JSON.parse(value.body).products[0].productBaseInfoV1.maximumRetailPrice.amount;
         try {
           let productImg = JSON.parse(value.body).products[0].productBaseInfoV1.imageUrls['800x800'];
           /*if (productImg && productImg!=null && productImg!='') {
@@ -369,7 +400,7 @@ app.get('/invokeChat', function(request, resp) {
 
         //request to google for "shopping guide" request
         let q = request.query["q"].indexOf(" ") != -1? request.query["q"].split(' ')[0] : request.query["q"];
-        let articleHTML = getArticle(q, resp) ;
+        let articleHTML = getArticle(q, resp, productPrice) ;
 
         console.log('articleHTML: ', articleHTML);
 
