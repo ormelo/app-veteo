@@ -491,15 +491,19 @@ app.post('/captureChatData', (req, res) => {
         break;
       case 'capture answer 5a':
         userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][0]);
+        io.emit('shopping parameters captured', {q: userCriteriaSelection[uuid].toString()});
         break;
       case 'capture answer 5b':
         userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][1]);
+        io.emit('shopping parameters captured', {q: userCriteriaSelection[uuid].toString()});
         break;
       case 'capture answer 5c':
         userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][2]);
+        io.emit('shopping parameters captured', {q: userCriteriaSelection[uuid].toString()});
         break;
       case 'capture answer 5d':
         userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][3]);
+        io.emit('shopping parameters captured', {q: userCriteriaSelection[uuid].toString()});
         break;
     }
     // return challenge

@@ -984,6 +984,10 @@ socket.on('product-found', function(msg){
       console.log('msg: ', msg);
     });
 
+socket.on('shopping parameters captured', function(msg){
+      console.log('msg: ', msg);
+    });
+
 var guid = function() {
     if(sessionStorage.getItem('guid') != null) {
       return sessionStorage.getItem('guid');
