@@ -514,7 +514,7 @@ app.post('/captureChatData', (req, res) => {
     };
 
 
-    console.log('parameters captured: ', c);
+    console.log('parameters captured: ', userCriteriaSelection);
  
     res.json(data);
 });
