@@ -12,7 +12,22 @@ var bodyParser = require('body-parser');
 var client = require('flipkart-api-affiliate-client');
 var uuid = require('uuid-v4');
 var http = require("https");
+var httpServ = require('http').createServer (app);
+var io = require('socket.io')(httpServ);
 var DEVELOPER_ACCESS_TOKEN = '7311e67496773579a7924b37e2086b32e68de0a0298890ae236b598d507f0b40';
+var shoppingCriteriaMap = {keywords: []};
+var shoppingCriteriaUUIDMap = {};
+var userCriteriaSelection = [];
+var resultsQuery = '';
+
+var goToValKeywords = ["5cbecf1bf96720080791819c", "5cbecf92f96720df8f9181b2", "5cbecfe0dd2e6e8a776f9ee8", "5cbecfe6dd2e6e34916f9eef", "5cbecfeadd2e6e2a0f6f9ef1", "5cbecfeedd2e6e73a56f9ef3", "5cbecff5dd2e6eb3646f9ef6", "5cbecff9f96720ad639181c6"];
+var goToValBudgets = ["5cbed205f967203cf9918240", "5cbed20af9672091f0918242", "5cbed20fdd2e6e7eb56f9f60", "5cbed214f96720ea24918248"];
+//questionCriteraNameMap
+//answer 1 - Object.keys(k)[1] 
+//answer 2 - Object.keys(k)[2] 
+//answer 3 - Object.keys(k)[3] 
+//answer 4 - Object.keys(k)[0] 
+//answer 5 - Object.keys(k)[4] 
 
 var recentlyResearchedImgs = ["https://rukminim1.flixcart.com/image/800/800/jt1tq4w0/smart-band-tag/r/d/b/waterproof-smart-m3-band-black-01-mezire-original-imafccx5gsdhxuh5.jpeg?q=90", "https://rukminim1.flixcart.com/image/800/800/jtrjngw0/mobile/2/t/v/realme-3-rmx1825-original-imaferd5uzuyxrsv.jpeg?q=90","https://rukminim1.flixcart.com/image/800/800/jfsknm80/tablet/f/m/c/apple-mrjp2hn-a-original-imaf46khz8vftwnf.jpeg?q=90","https://rukminim1.flixcart.com/image/800/800/j3lwh3k0/power-bank/y/x/t/power-bank-it-pb-20k-poly-intex-original-imaeupg8dfgtsrfw.jpeg?q=90","https://rukminim1.flixcart.com/image/800/800/jfsknm80/smart-assistant/j/q/h/home-mini-ghmini-chalk-google-original-imaf46ev9a8xkahw.jpeg?q=90"];
 
@@ -68,6 +83,10 @@ var pages = [];
     pages.startYourOwn = data;
   });
 
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
@@ -97,7 +116,7 @@ app.get('/home', function(request, response) {
   response.sendFile(path.resolve(__dirname, 'public', 'home.html'));
 });
 
-function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, keywords, budgetArr) {
+function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, keywords, budgetArr, nextQuestionInteractionVal) {
   var options = {
         "method": "PUT",
         "hostname": "api.chatbot.com",
@@ -138,7 +157,7 @@ function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, 
             if(i>7){
               break;
             }
-            var btn = {type:'goto',title:keywords[i].keyword.substr(0,16)+'...', value: gotoVal};
+            var btn = {type:'goto',title:keywords[i].keyword.substr(0,16)+'...', value: goToValKeywords[i]};
             buttons.push(btn);
          }
 
@@ -149,7 +168,7 @@ function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, 
        } else if (num == 5) {
          console.log('--budgetArr--', budgetArr);
          for(var i in budgetArr) {
-            var btn = {type:'goto',title:budgetArr[i], value: gotoVal};
+            var btn = {type:'goto',title:budgetArr[i], value: goToValBudgets[i]};
             buttons.push(btn);
          }
 
@@ -158,7 +177,7 @@ function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, 
          console.log('buttonStr: ', buttonStr);
          req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":"+buttonStr+",\"filters\":[],\"delay\":2000}]}");
        } else {
-         req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\""+gotoVal+"\"},{\"type\":\"postback\",\"title\":\"Not really\",\"value\":\"\"}],\"filters\":[],\"delay\":2000}]}");
+         req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\""+gotoVal+"\"},{\"type\":\"goto\",\"title\":\"Not really\",\"value\":\""+nextQuestionInteractionVal+"\"}],\"filters\":[],\"delay\":2000}]}");
        }
        
        req.end();
@@ -171,8 +190,10 @@ function constructQuestion(questionNum, specObj, quickQuestionTemplates) {
     console.log('specObj.values.length: ', specObj.values.length); 
     if(specObj.values.length == 1) {
       suffix = specName + ' like ' + specObj.values[0].key;
+      shoppingCriteriaMap[specName] = [specObj.values[0].key];
     } else if(specObj.values.length >= 2) {
       suffix = specName + ' like ' + specObj.values[0].key + " and " + specObj.values[1].key;
+      shoppingCriteriaMap[specName] = [specObj.values[0].key, specObj.values[1].key];
     } 
     
     let question = quickQuestionTemplates[questionNum] + suffix;
@@ -180,7 +201,7 @@ function constructQuestion(questionNum, specObj, quickQuestionTemplates) {
     if(quickQuestionTemplates[questionNum].indexOf('Lot of online users considered') !== -1) {
       question = question + '. Do you wish to add these to your search'
     }
-    question += '?';
+    //question += '?';
     return {qnum: questionNum, question};
 }
 
@@ -287,7 +308,9 @@ function getBudget(resp, productPrice) {
       budgetRanges.push('40 to 60k');budgetRanges.push('60 to 80k');budgetRanges.push('80 to 1Lakh');budgetRanges.push('1Lakh+');
     }
     updateQuestion('5cbb5ca8dd2e6e52316ebf74',5, "Sure. what’s the budget range you’re looking at?", '', resp, '5cbb64b5dd2e6e840e6ec0ca', [], budgetRanges);
-    resp.send(budgetRanges);
+    shoppingCriteriaMap.budgetRanges = budgetRanges;
+    shoppingCriteriaUUIDMap[resp.uuid] = shoppingCriteriaMap;
+    resp.send(shoppingCriteriaUUIDMap);
 }
 
 function getKeywords(q, url, resp, productPrice) {
@@ -314,6 +337,9 @@ function getKeywords(q, url, resp, productPrice) {
             for (var i in keywords) {
               if(keywords[i] !== q) {
                 keywordsArr.push(keywords[i]);
+                if(i<=7) {
+                  shoppingCriteriaMap.keywords.push({index: i, keyword: keywords[i].keyword});
+                }
               }
             }
             
@@ -336,7 +362,7 @@ app.get('/invokeChat', function(request, resp) {
         body: request.query.q,
     };
     let body = "";
-    var myUUID = uuid();
+    resp.uuid = uuid();
     var storyId = '';
     var integrationId = '';
     var integrationScript = undefined;
@@ -351,12 +377,15 @@ app.get('/invokeChat', function(request, resp) {
     let specRelevanceArray = [{name: '', relevance: 3}]; //spec name string, value score
     let quickQuestionTemplates = ["Do you want to consider ","Lot of online users considered ", "How about "];
     let featureSuggestTemplate ="Also, does any of the below features sound relevant";
-    console.log('myUUID: ',myUUID);
+    shoppingCriteriaMap = {keywords: []};
+    console.log('resp.uuid: ',resp.uuid);
     let questionNum = 0;
     
     
     return fkClient.doKeywordSearch(request.query["q"],10).then(function(value){
         productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
+        io.emit('product-found', { for: 'everyone', title: productTitle });
+
         productPrice = JSON.parse(value.body).products[0].productBaseInfoV1.maximumRetailPrice.amount;
         try {
           let productImg = JSON.parse(value.body).products[0].productBaseInfoV1.imageUrls['800x800'];
@@ -381,21 +410,21 @@ app.get('/invokeChat', function(request, resp) {
           let q1 = constructQuestion(questionNum, shoppingSearchSpecs[0], quickQuestionTemplates);
           console.log('question 1: ', q1.question);
 
-          updateQuestion('5cb8c5f1f967202ea5900e2f',1, q1.question, productTitle, resp, "5cb8d781dd2e6ef9bb6e3b3d");
+          updateQuestion('5cb8c5f1f967202ea5900e2f',1, q1.question, productTitle, resp, "5cb8d781dd2e6ef9bb6e3b3d",null,null,"5cb98762f967201188903bea");
         }
         if(shoppingSearchSpecs.length >= 2) {
           questionNum = questionNum == 0 ? 1 : 0;
           let q2 = constructQuestion(questionNum, shoppingSearchSpecs[1], quickQuestionTemplates);
           console.log('question 2: ', q2.question);
 
-          updateQuestion('5cb98762f967201188903bea',2, q2.question, productTitle, resp, "5cb9d13ff96720733d905af6");
+          updateQuestion('5cb98762f967201188903bea',2, q2.question, productTitle, resp, "5cb9d13ff96720733d905af6",null,null,"5cb9d15edd2e6eb11b6e78f8");
         }
         if(shoppingSearchSpecs.length >= 3) {
           questionNum = 2;
           let q3 = constructQuestion(questionNum, shoppingSearchSpecs[2], quickQuestionTemplates);
           console.log('question 3: ', q3.question);
 
-          updateQuestion('5cb9d15edd2e6eb11b6e78f8',3, q3.question, productTitle, resp, "5cbb2b95dd2e6e9ad36eb5b9");
+          updateQuestion('5cb9d15edd2e6eb11b6e78f8',3, q3.question, productTitle, resp, "5cbb2b83f967200300909b2e",null,null,"5cbb2b95dd2e6e9ad36eb5b9");
         }
 
         //request to google for "shopping guide" request
@@ -607,6 +636,6 @@ app.get('/onboard/step2', function(request, response) {
 response.end();
 });
 
-app.listen(app.get('port'), function() {
+httpServ.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
