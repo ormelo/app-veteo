@@ -457,49 +457,49 @@ app.post('/captureChatData', (req, res) => {
 
     switch(req.body.result.interaction.name) {
       case 'capture answer 1':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[1]]);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[1]]);
         break;
       case 'capture answer 2':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[2]]);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[2]]);
         break;
       case 'capture answer 3':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[3]]);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[3]]);
         break;
       case 'capture answer 4a':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '0'})[0].keyword);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '0'})[0].keyword);
         break;
       case 'capture answer 4b':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '1'}))[0].keyword;
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '1'}))[0].keyword;
         break;
       case 'capture answer 4c':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '2'})[0].keyword);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '2'})[0].keyword);
         break;
       case 'capture answer 4d':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '3'})[0].keyword);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '3'})[0].keyword);
         break;
       case 'capture answer 4e':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '4'})[0].keyword);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '4'})[0].keyword);
         break;
       case 'capture answer 4f':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '5'})[0].keyword);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '5'})[0].keyword);
         break;
       case 'capture answer 4g':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '6'})[0].keyword);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '6'})[0].keyword);
         break;
       case 'capture answer 4h':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '7'})[0].keyword);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{return elem.index === '7'})[0].keyword);
         break;
       case 'capture answer 5a':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][0]);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][0]);
         break;
       case 'capture answer 5b':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][1]);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][1]);
         break;
       case 'capture answer 5c':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][2]);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][2]);
         break;
       case 'capture answer 5d':
-        userCriteriaSelection[uuid].push(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][3]);
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4]][3]);
         break;
     }
     // return challenge
