@@ -367,6 +367,7 @@ app.get('/invokeChat', function(request, resp) {
     };
     let body = "";
     resp.uuid = uuid();
+    userCriteriaSelection[resp.uuid] = [];
     var storyId = '';
     var integrationId = '';
     var integrationScript = undefined;
@@ -453,7 +454,6 @@ app.post('/captureChatData', (req, res) => {
     let uuid = req.body.result.sessionParameters.default_id;
     console.log('user uuid:', uuid);
     console.log('webhook data: ', JSON.stringify(req.body));
-    userCriteriaSelection[uuid] = [];
 
     switch(req.body.result.interaction.name) {
       case 'capture answer 1':
@@ -514,7 +514,7 @@ app.post('/captureChatData', (req, res) => {
     };
 
 
-    console.log('parameters captured: ', userCriteriaSelection);
+    console.log('parameters captured: ', c);
  
     res.json(data);
 });
