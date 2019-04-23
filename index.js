@@ -116,7 +116,7 @@ app.get('/home', function(request, response) {
   response.sendFile(path.resolve(__dirname, 'public', 'home.html'));
 });
 
-function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, keywords, budgetArr, nextQuestionInteractionVal) {
+function updateQuestion(uuid, interactionId, num, question, outputStr, resp, gotoVal, keywords, budgetArr, nextQuestionInteractionVal) {
   var options = {
         "method": "PUT",
         "hostname": "api.chatbot.com",
@@ -177,7 +177,11 @@ function updateQuestion(interactionId, num, question, outputStr, resp, gotoVal, 
          console.log('buttonStr: ', buttonStr);
          req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":"+buttonStr+",\"filters\":[],\"delay\":2000}]}");
        } else {
-         req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\""+gotoVal+"\"},{\"type\":\"goto\",\"title\":\"Not really\",\"value\":\""+nextQuestionInteractionVal+"\"}],\"filters\":[],\"delay\":2000}]}");
+         if(num == 1) {
+           req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"setAttributes\",\"filters\":[],\"elements\":[{\"action\":\"set\",\"name\":\"default_id\",\"value\":\""+uuid+"\"}]},{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\""+gotoVal+"\"},{\"type\":\"goto\",\"title\":\"Not really\",\"value\":\""+nextQuestionInteractionVal+"\"}],\"filters\":[],\"delay\":2000}]}");
+         } else {
+           req.write("{\"name\":\"question"+num+"\",\"action\":\"\",\"userSays\":[],\"triggers\":[],\"parameters\":[],\"responses\":[{\"type\":\"quickReplies\",\"title\":\""+question+"?\",\"buttons\":[{\"type\":\"goto\",\"title\":\"yes\",\"value\":\""+gotoVal+"\"},{\"type\":\"goto\",\"title\":\"Not really\",\"value\":\""+nextQuestionInteractionVal+"\"}],\"filters\":[],\"delay\":2000}]}");
+         }
        }
        
        req.end();
@@ -307,7 +311,7 @@ function getBudget(resp, productPrice) {
     } else if(productPrice >= 50000) {
       budgetRanges.push('40 to 60k');budgetRanges.push('60 to 80k');budgetRanges.push('80 to 1Lakh');budgetRanges.push('1Lakh+');
     }
-    updateQuestion('5cbb5ca8dd2e6e52316ebf74',5, "Sure. what’s the budget range you’re looking at?", '', resp, '5cbb64b5dd2e6e840e6ec0ca', [], budgetRanges);
+    updateQuestion(resp.uuid, '5cbb5ca8dd2e6e52316ebf74',5, "Sure. what’s the budget range you’re looking at?", '', resp, '5cbb64b5dd2e6e840e6ec0ca', [], budgetRanges);
     shoppingCriteriaMap.budgetRanges = budgetRanges;
     shoppingCriteriaUUIDMap[resp.uuid] = shoppingCriteriaMap;
     resp.send(shoppingCriteriaUUIDMap);
@@ -343,7 +347,7 @@ function getKeywords(q, url, resp, productPrice) {
               }
             }
             
-            updateQuestion('5cbb2b95dd2e6e9ad36eb5b9',4, "Which of these is a must have for you?", '', resp, '5cbb5e27dd2e6e9c5b6ebfb2', keywordsArr);
+            updateQuestion(resp.uuid, '5cbb2b95dd2e6e9ad36eb5b9',4, "Which of these is a must have for you?", '', resp, '5cbb5e27dd2e6e9c5b6ebfb2', keywordsArr);
             
             getBudget(resp, productPrice);
           });
@@ -410,21 +414,21 @@ app.get('/invokeChat', function(request, resp) {
           let q1 = constructQuestion(questionNum, shoppingSearchSpecs[0], quickQuestionTemplates);
           console.log('question 1: ', q1.question);
 
-          updateQuestion('5cb8c5f1f967202ea5900e2f',1, q1.question, productTitle, resp, "5cb8d781dd2e6ef9bb6e3b3d",null,null,"5cb98762f967201188903bea");
+          updateQuestion(resp.uuid, '5cb8c5f1f967202ea5900e2f',1, q1.question, productTitle, resp, "5cb8d781dd2e6ef9bb6e3b3d",null,null,"5cb98762f967201188903bea");
         }
         if(shoppingSearchSpecs.length >= 2) {
           questionNum = questionNum == 0 ? 1 : 0;
           let q2 = constructQuestion(questionNum, shoppingSearchSpecs[1], quickQuestionTemplates);
           console.log('question 2: ', q2.question);
 
-          updateQuestion('5cb98762f967201188903bea',2, q2.question, productTitle, resp, "5cb9d13ff96720733d905af6",null,null,"5cb9d15edd2e6eb11b6e78f8");
+          updateQuestion(resp.uuid, '5cb98762f967201188903bea',2, q2.question, productTitle, resp, "5cb9d13ff96720733d905af6",null,null,"5cb9d15edd2e6eb11b6e78f8");
         }
         if(shoppingSearchSpecs.length >= 3) {
           questionNum = 2;
           let q3 = constructQuestion(questionNum, shoppingSearchSpecs[2], quickQuestionTemplates);
           console.log('question 3: ', q3.question);
 
-          updateQuestion('5cb9d15edd2e6eb11b6e78f8',3, q3.question, productTitle, resp, "5cbb2b83f967200300909b2e",null,null,"5cbb2b95dd2e6e9ad36eb5b9");
+          updateQuestion(resp.uuid, '5cb9d15edd2e6eb11b6e78f8',3, q3.question, productTitle, resp, "5cbb2b83f967200300909b2e",null,null,"5cbb2b95dd2e6e9ad36eb5b9");
         }
 
         //request to google for "shopping guide" request
@@ -446,7 +450,58 @@ app.post('/captureChatData', (req, res) => {
         return res.sendStatus(401);
     }
 
+    let uuid = req.body.result.sessionParameters.default_id;
+    console.log('user uuid:', uuid);
     console.log('webhook data: ', JSON.stringify(req.body));
+    userCriteriaSelection[uuid] = [];
+
+    switch(req.body.result.interaction.name) {
+      case 'capture answer 1':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[1]]);
+        break;
+      case 'capture answer 2':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[2]]);
+        break;
+      case 'capture answer 3':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[3]]);
+        break;
+      case 'capture answer 4a':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{elem.index === '0'}));
+        break;
+      case 'capture answer 4b':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{elem.index === '1'}));
+        break;
+      case 'capture answer 4c':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{elem.index === '2'}));
+        break;
+      case 'capture answer 4d':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{elem.index === '3'}));
+        break;
+      case 'capture answer 4e':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{elem.index === '4'}));
+        break;
+      case 'capture answer 4f':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{elem.index === '5'}));
+        break;
+      case 'capture answer 4g':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{elem.index === '6'}));
+        break;
+      case 'capture answer 4h':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[0]].filter((elem)=>{elem.index === '7'}));
+        break;
+      case 'capture answer 5a':
+        userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4][0]]);
+        break;
+      case 'capture answer 5b':
+       userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4][1]]);
+        break;
+      case 'capture answer 5c':
+       userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4][2]]);
+        break;
+      case 'capture answer 5d':
+       userCriteriaSelection[uuid] = userCriteriaSelection[uuid].concat(shoppingCriteriaUUIDMap[uuid][Object.keys(shoppingCriteriaUUIDMap[uuid])[4][3]]);
+        break;
+    }
     // return challenge
     // return a text response
     const data = {
@@ -457,6 +512,9 @@ app.post('/captureChatData', (req, res) => {
             }
         ]
     };
+
+
+    console.log('parameters captured: ', userCriteriaSelection);
  
     res.json(data);
 });

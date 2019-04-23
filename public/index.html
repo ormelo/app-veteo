@@ -6,10 +6,10 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107877274-1"></script>
 <script src="/scripts/socket.io.slim.js"></script>
 <script>
-  if(window.location.protocol == 'http:' || window.location.host == 'chirrp.in') {
+  if(window.location.host.indexOf('chirrp') != -1 && window.location.protocol == 'http:' || window.location.host == 'chirrp.in') {
     location.href = 'https://www.chirrp.in';
   } 
-  if(window.location.host == 'www.chirrp.in' && window.location.protocol == 'http:') {
+  if(window.location.host.indexOf('chirrp') != -1 && window.location.host == 'www.chirrp.in' && window.location.protocol == 'http:') {
     location.href = 'https://www.chirrp.in';
   }
   window.dataLayer = window.dataLayer || [];
