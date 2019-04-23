@@ -7,10 +7,10 @@
 <script src="/scripts/socket.io.slim.js"></script>
 <script>
   if(window.location.host.indexOf('chirrp') != -1 && window.location.protocol == 'http:' || window.location.host == 'chirrp.in') {
-    location.href = 'https://localhost:5000';
+    location.href = 'https://www.chirrp.in';
   } 
-  if(window.location.host.indexOf('chirrp') != -1 && window.location.host == 'localhost:5000' && window.location.protocol == 'http:') {
-    location.href = 'https://localhost:5000';
+  if(window.location.host.indexOf('chirrp') != -1 && window.location.host == 'www.chirrp.in' && window.location.protocol == 'http:') {
+    location.href = 'https://www.chirrp.in';
   }
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -1075,7 +1075,7 @@ function invokeChat() {
     setTimeout(hideFreshSearchMsg, 14000);
   }
   sessionStorage.setItem('query', document.getElementById('query').value);
-  xmlhttp.open("GET", window.location.protocol+"//localhost:5000/invokeChat?q="+document.getElementById('query').value, true);
+  xmlhttp.open("GET", window.location.protocol+"//www.chirrp.in/invokeChat?q="+document.getElementById('query').value, true);
   xmlhttp.send(null);
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -1105,7 +1105,7 @@ function fetchRecentlyViewed() {
       // code for old IE browsers
       xmlhttp1 = new ActiveXObject("Microsoft.XMLHTTP");
   }
-  xmlhttp1.open("GET", window.location.protocol+"//localhost:5000/getRecentlyResearched", true);
+  xmlhttp1.open("GET", window.location.protocol+"//www.chirrp.in/getRecentlyResearched", true);
   xmlhttp1.send(null);
   xmlhttp1.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
