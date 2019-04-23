@@ -17,7 +17,7 @@ var io = require('socket.io')(httpServ);
 var DEVELOPER_ACCESS_TOKEN = '7311e67496773579a7924b37e2086b32e68de0a0298890ae236b598d507f0b40';
 var shoppingCriteriaMap = {keywords: []};
 var shoppingCriteriaUUIDMap = {};
-var userCriteriaSelection = [];
+var userCriteriaSelection = {};
 var resultsQuery = '';
 
 var goToValKeywords = ["5cbecf1bf96720080791819c", "5cbecf92f96720df8f9181b2", "5cbecfe0dd2e6e8a776f9ee8", "5cbecfe6dd2e6e34916f9eef", "5cbecfeadd2e6e2a0f6f9ef1", "5cbecfeedd2e6e73a56f9ef3", "5cbecff5dd2e6eb3646f9ef6", "5cbecff9f96720ad639181c6"];
