@@ -274,6 +274,7 @@ function getBuyingGuideSearchLink(htmlContent) {
 }
 
 function getBrands(q, budgetSuffix, resp) {
+
   let productsByBrand = {};
   let fetchCount = 0;
   var options = {
@@ -282,6 +283,8 @@ function getBrands(q, budgetSuffix, resp) {
         "port": null,
         "path": "/extract?url=https://www.flipkart.com/search?q="+q.replace(/ /g,'%2520')+'&extractor=KeepEverythingExtractor&output=text&extractImages=&token='
     };
+    console.log('q: ', q);
+    console.log('options: ', options);
   var req = http.request(options, function (res) {
         var chunks = [];
         res.on("data", function (chunk) {
