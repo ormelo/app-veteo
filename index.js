@@ -732,11 +732,8 @@ app.get("/", function(request, response) {
 });
 
 app.get("/products", function(request, response) {
-  fs.readFile("public/products.html", "utf8", function(err, data) {
-    response.send(data);
-  });
   //Todo: comment above n uncomment below
-  //response.send(pages.products);
+  response.send(pages.products);
 });
 
 app.get("/getQuote", function(request, response) {
