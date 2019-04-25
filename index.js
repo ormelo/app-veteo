@@ -275,6 +275,7 @@ function getBuyingGuideSearchLink(htmlContent) {
 
 function getBrands(q, budgetSuffix, resp) {
   let productsByBrand = {};
+  let fetchCount = 0;
   var options = {
         "method": "GET",
         "hostname": "boilerpipe-web.appspot.com",
@@ -321,8 +322,8 @@ function getBrands(q, budgetSuffix, resp) {
 
                   productsByBrand[productBrand] = productsRanked;
                   io.emit('product-found', { for: 'everyone', title: productTitle });
-
-                  if(productBrand==extract[extract.length-1]) {
+                  fetchCount++;
+                  if(fetchCount==extract.length) {
                     resp.send(productsByBrand);
                   }
 
