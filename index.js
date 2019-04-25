@@ -67,6 +67,10 @@ var pages = [];
     pages.index = data;
   });
 
+  fs.readFile("public/products.html", "utf8", function(err, data) {
+    pages.products = data;
+  });
+
   fs.readFile("public/getQuote.html", "utf8", function(err, data) {
     pages.getQuote = data;
   });
@@ -293,6 +297,7 @@ function getBrands(q, budgetSuffix, resp) {
 
         res.on("end", function () {
             var body = Buffer.concat(chunks);
+            console.log('body: ', body.toString());
             var extract = body.toString();
             extract = extract.substr(extract.indexOf('Brand'),extract.indexOf(' MORE'));
             extract = extract.split('\n');
@@ -658,6 +663,14 @@ app.get('/fit-test', function(request, response) {
 
 app.get("/", function(request, response) {
   response.send(pages.index);
+});
+
+app.get("/products", function(request, response) {
+  fs.readFile("public/products.html", "utf8", function(err, data) {
+    response.send(data);
+  });
+  //Todo: comment above n uncomment below
+  //response.send(pages.products);
 });
 
 app.get("/getQuote", function(request, response) {

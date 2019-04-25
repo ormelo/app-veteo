@@ -1020,7 +1020,8 @@ function fetchWishList(q) {
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
        // Typical action to be performed when the document is ready:
-       
+       localStorage.setItem('products', xmlhttp.responseText);
+       location.href = '/products';
        console.log("response: ", xmlhttp.responseText);
        
     }
