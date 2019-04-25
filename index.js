@@ -377,13 +377,16 @@ app.get('/fetchWishList', function(request, response) {
     for(let i in criteria) {
       if(i == 0) {
         query += " with best "+criteria[i].split(' ')[0];
-      } else {
+      } else if(i==1) {
         query += " and "+criteria[i].split(' ')[0];
       }
     }
   } else {
     query += " with best "+criteria[0].split(' ')[0];
   }
+
+  //cut short query if conditions more than two
+  if(query.split(' and '))
   
 
   console.log('budgetStr: ', query);
