@@ -281,15 +281,81 @@ function getBrands(q, budgetSuffix, resp) {
 
   let productsByBrand = {};
   let fetchCount = 0;
-  var options = {
+  
+
+
+ var options = {
         "method": "GET",
-        "hostname": "boilerpipe-web.appspot.com",
+        "hostname": "www.flipkart.com",
         "port": null,
-        "path": "/extract?url=https://www.flipkart.com/search?q="+q.replace(/ /g,'%2520')+'&extractor=KeepEverythingExtractor&output=text&extractImages=&token='
+        "path": "/search?q="+q.replace(/ /,'+')
     };
-    console.log('q: ', q);
-    console.log('options: ', options);
+    console.log('url:', options.path);
   var req = http.request(options, function (res) {
+        var chunks = [];
+        res.on("data", function (chunk) {
+            //console.log('data: ', chunk);
+            chunks.push(chunk);
+        });   
+
+        var extract = [];
+
+        res.on("end", function () {
+            var body = Buffer.concat(chunks);
+            //console.log('syntax: ', body.toString());
+            //resp.send(body.toString());
+
+            var summaryText = body.toString();
+            
+            summaryText = summaryText.substring(summaryText.indexOf('Brand</div>')+11, summaryText.indexOf('MORE</span>'));
+            console.log('summaryText: ', summaryText);
+            let summaryArr = summaryText.split('<div class="_1GEhLw">');
+            summaryArr.shift();
+
+            //console.log('brandIndex: ', brandIndex);
+            for(var j in summaryArr) {
+              //console.log('item:',summaryArr[j].sentence);
+              extract.push(summaryArr[j].substring(0,summaryArr[j].indexOf('</div>')));
+
+            }
+
+            console.log('extract: ',extract);
+            for(var i in extract) {
+              var brandName = extract[i];
+              fkClient.doKeywordSearch(extract[i]+' '+q+budgetSuffix).then(function(value){
+                  productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
+                  var productBrand = JSON.parse(value.body).products[0].productBaseInfoV1.productBrand
+
+
+                  productTitle = productTitle.indexOf(" ") != -1 ? productTitle.split(" ")[0]+'%2B'+productTitle.split(" ")[1] : productTitle;
+                  console.log('productTitle:', productTitle);
+
+
+
+                  let productsRanked = [];
+                  let products = JSON.parse(value.body).products;
+                  for(var i=0;i<products.length;i++) {
+                    let product = {title: products[i].productBaseInfoV1.title, img: products[i].productBaseInfoV1.imageUrls['800x800'], 
+                      mrp: products[i].productBaseInfoV1.maximumRetailPrice.amount, specialPrice: products[i].productBaseInfoV1.flipkartSpecialPrice.amount, 
+                      attributes: products[i].productBaseInfoV1.attributes, keySpecs: products[i].categorySpecificInfoV1.keySpecs,
+                      detailedSpecs: products[i].categorySpecificInfoV1.detailedSpecs};
+                    productsRanked.push(product);
+                  }
+
+                  productsByBrand[productBrand] = productsRanked;
+                  io.emit('product-found', { for: 'everyone', title: productTitle });
+                  fetchCount++;
+                  if(fetchCount==extract.length) {
+                    resp.send(productsByBrand);
+                  }
+
+              });
+            }
+            
+          });
+       });
+
+  /*var req = http.request(options, function (res) {
         var chunks = [];
         res.on("data", function (chunk) {
             chunks.push(chunk);
@@ -339,7 +405,7 @@ function getBrands(q, budgetSuffix, resp) {
             }
 
           });
-       });
+       });*/
        
        req.end();
 }
