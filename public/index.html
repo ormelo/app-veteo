@@ -999,7 +999,7 @@ function fetchWishList(q) {
     setTimeout(hideFreshSearchMsg, 14000);
   }
   sessionStorage.setItem('query', document.getElementById('query').value);
-  xmlhttp.open("GET", window.location.protocol+"//www.chirrp.in/fetchWishList?q="+q+"&main="+document.getElementById('query').value, true);
+  xmlhttp.open("GET", window.location.protocol+"//www.chirrp.in/fetchWishList?q="+q+"&main="+sessionStorage.getItem('query'), true);
   xmlhttp.send(null);
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
