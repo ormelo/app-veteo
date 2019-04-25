@@ -360,6 +360,56 @@ app.get('/getRecentlyResearched', function(request, resp) {
   resp.send(recentlyResearchedImgs);
 });
 
+app.get('/fetchWishList', function(request, response) {
+  let query = request.query["main"];
+  query = query.indexOf('under') != -1 ? query.substr(0, query.indexOf('under')) : query;
+  let budgetStr = request.query["q"].indexOf(',') != -1 ? request.query["q"].split(',').filter((elem)=>elem.indexOf(' to ')!=-1) : '';
+  if(budgetStr && budgetStr.length) {
+    let actualBudgetStr = '';
+    actualBudgetStr = budgetStr[0].split(' to ')[1].indexOf('lakh') == -1 ? budgetStr[0].split(' to ')[1].replace('k','000') : budgetStr[0].split(' to ')[1];
+    query += " under " + actualBudgetStr;
+  }
+
+  let criteria = request.query["q"].split(',');
+  criteria.pop(); //remove budget criteria
+  
+  if(criteria && criteria.length > 1) {
+    for(let i in criteria) {
+      if(i == 0) {
+        query += " with best "+criteria[i].split(' ')[0];
+      } else {
+        query += " and "+criteria[i].split(' ')[0];
+      }
+    }
+  } else {
+    query += " with best "+criteria[0].split(' ')[0];
+  }
+  
+
+  console.log('budgetStr: ', query);
+  return fkClient.doKeywordSearch(query,100).then(function(value){
+        productTitle = JSON.parse(value.body).products[0].productBaseInfoV1.title;
+        let productsRanked = [];
+        let products = JSON.parse(value.body).products;
+        for(var i=0;i<products.length;i++) {
+          let product = {title: products[i].productBaseInfoV1.title, img: products[i].productBaseInfoV1.imageUrls['800x800'], 
+            mrp: products[i].productBaseInfoV1.maximumRetailPrice.amount, specialPrice: products[i].productBaseInfoV1.flipkartSpecialPrice.amount, 
+            attributes: products[i].productBaseInfoV1.attributes, keySpecs: products[i].categorySpecificInfoV1.keySpecs,
+            detailedSpecs: products[i].categorySpecificInfoV1.detailedSpecs};
+          productsRanked.push(product);
+        }
+        io.emit('product-found', { for: 'everyone', title: productTitle });
+
+        
+
+        // console.log('fetchWishList: ', value.body);
+
+
+        response.send(productsRanked);
+
+    });
+});
+
 app.get('/invokeChat', function(request, resp) {
   const response = {
         statusCode: 200,
