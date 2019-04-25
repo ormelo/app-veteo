@@ -865,6 +865,19 @@ td {
     margin-bottom: -20px;
 }
 
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typeWriter {
+  font-family: "a";
+  font-size: 24px;
+  animation: caret 1s steps(1) infinite;
+  color: #72a4e4;
+}
+
 </style>
 </head>
 
@@ -886,7 +899,7 @@ td {
   <div class="button-container">
     
     <input id="query" type="text" style="height: 47px;width: 100%;font-size: 20px;padding: 12px;border: 2px solid #9fa4af;border-radius: 37px;margin-top: -10px;padding-right: 75px;z-index: 1;" value="smartphones" />
-    <a id="cta" href="#" onclick="invokeChat()" class="btn" style="width: 73px;position: relative;float: right;right: -6px;bottom: 47px;height: 47px;z-index: 1;"><span>Go</span></a>
+    <a id="cta" href="#" onclick="invokeChat()" class="btn" style="width: 153px;position: relative;float: right;right: -6px;bottom: 47px;height: 47px;z-index: 1;"><span>Get advise</span></a>
   </div>
 
 </div>
@@ -921,9 +934,12 @@ td {
 
 <div class="second" >Personalized<br>shopping advice.
 <br><br>
+<span class="typeWriter">Which phone to buy?</span>
+<br>
 <div style="font-size: 17px;font-family: Open Sans;margin-top: -10px;">
-  In the era of me-too products & fake reviews, finding authentic products that suit your needs can be tricky! <br><br>
-<span style="font-size: 34px">Meet Chirrp!</span><br><br> A friendly bot that understands your needs and magically creates a wishlist with products worth your attention!
+  
+
+<br><br> Authentic advise based on verified user recommendations!
 </div>
 <br>
 <div style="margin-top: 20px;text-decoration: underline;">How it works</div>
@@ -1152,6 +1168,49 @@ function fetchRecentlyViewed() {
     }
   };
 } 
+
+document.addEventListener('DOMContentLoaded',function(event){
+  // array with texts to type in typewriter
+  var dataText = [ "Which phone to buy?", "How to buy a good A/C?", "Best smart tv in my budget?"];
+  
+  // type one text in the typwriter
+  // keeps calling itself until the text is finished
+  function typeWriter(text, i, fnCallback) {
+    // chekc if text isn't finished yet
+    if (i < (text.length)) {
+      // add next character to h1
+     document.querySelector(".typeWriter").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 20000);
+     }
+     // check if dataText[i] exists
+    if (i < dataText[i].length) {
+      // text exists! start typewriter animation
+     typeWriter(dataText[i], 0, function(){
+       // after callback (and whole text has been animated), start next text
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
 
 </script>
 
