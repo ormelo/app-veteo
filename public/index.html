@@ -30,7 +30,7 @@ text-size-adjust:none;
     <!-- Responsive Metatag -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="Best catering services for your party at affordable prices. We serve everything fresh & hot right infront of your home, thanks to our food trucks.">
+    <meta name="description" content="Trusted local recommendations based on community knowledge.">
     <meta property="og:description" content="Best catering services for your party at affordable prices. We serve everything fresh & hot right infront of your home, thanks to our food trucks.">
     <meta property="og:keywords" content="Birthday Party, Office party, Corporate events, Catering, Small Party, Caterers, Small Home Parties,  Caterers in bangalore, house parties">
     <meta name="keywords" content="Birthday Party, Office party, Corporate events, Catering, Small Party, Caterers, Small Home Parties,  Caterers in bangalore, house parties">
@@ -78,13 +78,16 @@ text-size-adjust:none;
     
     <style type="text/css">
         html {
-            width: 104%;
+            width: 100%;
             overflow-x: hidden;
         }
       #contentContainer {
         background-image: url('./sc/sbgl1.png');
         background-repeat: repeat-x;
         background-size: contain;
+      }
+      .desktop {
+        display: none;
       }
         .background {
             background-repeat: no-repeat;
@@ -170,6 +173,12 @@ text-size-adjust:none;
               .mob-banner {
                   display: none;
                 }
+               .desktop {
+                display: inline;
+               }
+               .mob-only {
+                display: none;
+               }
             }
             .img-table {
             display: table;
@@ -182,6 +191,9 @@ text-size-adjust:none;
             margin-top: 30px;
             font-size: 17px;
             width: 360px;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .img-banner {
@@ -201,7 +213,7 @@ text-size-adjust:none;
         }
 
         .img-title {
-            font-size: 22px;
+            font-size: 21px;
             font-weight: bold;
             color: #000;
         }
@@ -286,6 +298,84 @@ text-size-adjust:none;
                     margin-top: 34px;
                 }
             }
+
+            p.chat{
+              max-width: 215px;
+              word-wrap: break-word;
+              margin-bottom: 12px;
+              line-height: 24px;
+              position:relative;
+                padding:10px 20px;
+              border-radius:25px;
+              margin: 0 auto;
+              margin-top: 20px;
+            }
+
+            p:before, p:after {
+                content:"";
+                    position:absolute;
+                bottom:-2px;
+                height:20px;
+              }
+
+            .from-me {
+                color:white;
+                background: linear-gradient(180deg, #87cdfa 0%, #5c9de5 80%, #5c9de5 100%);
+                align-self: flex-end;
+                margin-left: 10px;
+            }
+
+            .from-me:before {
+                    right:-7px;
+                    border-right:20px solid #62a4e7;
+                    border-bottom-left-radius: 16px 14px;
+                    -webkit-transform:translate(0, -2px);
+                            transform:translate(0, -2px);
+                }
+
+            .from-me:after {
+                    right:-56px;
+                    width:26px;
+                    background:white;
+                    border-bottom-left-radius: 10px;
+                    -webkit-transform:translate(-30px, -2px);
+                            transform:translate(-30px, -2px);
+                }
+            .from-them {
+                background:#E5E5EA;
+                color:black;
+                display: inline-block;
+                margin-left: 20px;
+            }
+            .from-them:before {
+                    left:-7px;
+                    border-left:20px solid #E5E5EA;
+                    border-bottom-right-radius: 16px 14px;
+                    -webkit-transform:translate(0, -2px);
+                            transform:translate(0, -2px);
+                }
+            .from-them:after {
+                    left:4px;
+                    width:26px;
+                    background:white;
+                    border-bottom-right-radius: 10px;
+                    -webkit-transform:translate(-30px, -2px);
+                            transform:translate(-30px, -2px);
+                }
+            .avatar {
+              vertical-align: middle;
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              margin-right: 18px;
+            }
+            .conv {
+                margin: 0 auto;
+                margin-top:30px;
+                left: 0;
+                right: 0;
+                width: 300px;
+            }
     </style>
 
 
@@ -311,7 +401,7 @@ text-size-adjust:none;
             </button>
             <!-- End Toggle Nav Link For Mobiles -->
             <a class="navbar-brand " href="http://www.scoosh.in" style="height: 40px;">
-                <img alt="zaphow    .com" class="logo" src="./img/logoz.png" >
+                <img alt="zaphow.com" class="logo" src="./img/logoz.png" >
             </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -356,11 +446,11 @@ text-size-adjust:none;
                     <h3 class="small_title" style="font-weight: normal;font-family: quicksand;margin-left:6px;">
                     
                     </h3>
-                    <img class="mob-banner" src="./sc/sbgm1.png" style="margin-top: 30px;margin-bottom: 20px;" />
+                    <img class="mob-banner" src="./img/sbgmin2.png" style="margin-top: 30px;margin-bottom: 20px;" />
                 </div>
 
                 <div class="col-sm-6 col-md-4">
-                     <div class="panel-center">
+                     <div class="panel-center desktop">
                         <h1 class="form_title" style="display: none"></h1>
                         <form onSubmit="checkFields();" action="/submitGetQuote" method="post" class="landing_page" >
     
@@ -416,63 +506,72 @@ text-size-adjust:none;
     <div class="img-table">
         <div class="img-div">
            <br> <div><span class="img-title">Verified customer interactions</span></div>
-            <br><div style="line-height: 22px;">Unlike reviews which can be faked, zaphow collects information about local providers from customers using direct questionnaire.</div>
-            <img class="img-banner" src="./img/revs.png" />
+            <br><div style="line-height: 22px;">Unlike reviews which can be influenced, zaphow collects direct feedback using evidence-based questionnaire.</div>
+            <div class="conv">
+                <p class="from-me chat">Hi, how was your experience with JobTree consultants?</p>
+                <img class="avatar" src="./sc/boy.png" /><p class="from-them chat">It was postive. Finally landed the job i was looking for.</p>
+                <p class="from-me chat">When did you avail JobTree service? (dd-mm-yy)</p>
+                <img class="avatar" src="./sc/boy.png" /><p class="from-them chat">31-05-19</p>
+                <p class="from-me chat">Pls share screenshot of receipt/email as proof to complete your feedback</p>
+                <img class="avatar" src="./sc/boy.png" /><p class="from-them chat"> ✅ File uploaded & verified
+                <p class="from-me chat">Thanks for the feedback 👍</p>
+            </div>
+            <div style="margin-top: 30px">This way you get unbiased, authentic recommendations for any provider.</div>
         </div>
-        <div class="img-div">
-            <div><span>Same product has reviews on both extremes. It's not a mere conincidence, is it? </span><br><br><span>Fake reviews have become a norm.</span></div>
-        </div>
+
     </div>
     <div class="img-table">
-        <div class="img-div">
-            <br/>
-            <div><span class="img-title">Cluezy recommendations</span></div>
-            <img class="img-banner" src="./img/filters.jpg" />
+        <div class="img-div" style="margin-top:-24px;">
+            <div><span class="img-title">Search by popular criteria</span></div>
+            <img class="img-banner" src="./img/criteria.png" style="width:300px" />
         </div>
         <div class="img-div">
-            <div><span>Cluezy eliminates fake reviews using verified patterns. It then cross-validates against hundreds of trusted sources.</span><br/><br/><span>Further, it ranks them & presents unbiased opinions to help you decide on the right product.</span></div>
+            <div><span>When it comes to finding the right local service, the community knows what to look and how to get the best bargain.
+                <br><br>That's why zaphow powers your search using popular criteria to provide trusted recommendations that suit your needs.</span></div>
         </div>
     </div>
-    <br>
     
 </div>
 
 
  </p>
-<div class="panel-center" style="width: 93%;border: 1px solid #ffd9c5;">
-                        <h1 class="form_title" style="display: none"></h1>
-                        <form onSubmit="checkFields();" action="/submitGetQuote" method="post" class="landing_page" >
-    
-        
-    
-     
-    
+                <br><br>
 
-    
-        <!--<input type="text" name="mobile" placeholder="Mobile" class="form-control" id="id_mobile" value="" title="Mobile number" pattern="[\+\-\s0-9]{10-15}" required="required" dcvalue="" aria-required="true">-->
-        
-    
 
-  
+                <div class="panel-center mob-only" style="position: fixed;bottom: 0px;background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgb(232, 243, 250) 100%);left: 0px;">
+                    <h1 class="form_title" style="display: none"></h1>
+                    <form onsubmit="checkFields();" action="/submitGetQuote" method="post" class="landing_page">
 
-    
 
-    
-        <input type="text" id="members" name="members" placeholder="" class="form-control" id="id_location" value="Smartphones under 20k" dcvalue="" autocomplete="off" required="required">
 
-        
-    
 
-    
-    <div id="div_id_submit" class="form-group">
-        <div class="controls ">
-            <p style="color: #000; font-size: 9px; text-align: center"></p>
-            <input type="hidden" name="csrfmiddlewaretoken" value="pilbkKuqZAMQ8uQhfnjWpSo3L1q5xB8vaV8nDgEpHFKYEdktYBsJOXx7y9qGuB7y">
-            <input type="submit" class="submit form-control" id="id_submit" value="Suggest Now" dcvalue="Submit">
-        </div>
-    </div>
-</form>
-                    </div>
+
+
+
+                        <!--<input type="text" name="mobile" placeholder="Mobile" class="form-control" id="id_mobile" value="" title="Mobile number" pattern="[\+\-\s0-9]{10-15}" required="required" dcvalue="" aria-required="true">-->
+
+
+
+
+
+
+
+
+                        <input type="text" style="border: 1px solid;font-size: 16px;height: 40px;" id="members" name="members" placeholder="" class="form-control" value="caterers in bangalore" dcvalue="caterers in bangalore" autocomplete="off" required="required">
+
+
+
+
+
+                        <div id="div_id_submit" class="form-group">
+                            <div class="controls ">
+                                <p style="color: #000; font-size: 9px; text-align: center"></p>
+                                <input type="hidden" name="csrfmiddlewaretoken" value="pilbkKuqZAMQ8uQhfnjWpSo3L1q5xB8vaV8nDgEpHFKYEdktYBsJOXx7y9qGuB7y">
+                                <input type="submit" class="submit form-control" id="id_submit" value="Find trusted providers" dcvalue="Find trusted providers">
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
                 </div>
             </div>
@@ -568,17 +667,7 @@ text-size-adjust:none;
 
 </style>
 
-<div class="copyright-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <p>
-                    Copyright© 2019 Cluezy.com
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+
     
 </div>
 <script src="./sc/jquery.min.js"></script>
