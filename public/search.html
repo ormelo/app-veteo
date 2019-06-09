@@ -6,13 +6,13 @@
 
 .logo {
   margin-top: 15px;
-  width: 150px
+  width: 30px
 }
 
 @media (max-width: 599px){
 .logo {
   margin-top: 15px;
-  width: 125px
+  width: 24px
 }
 }
 
@@ -112,7 +112,7 @@ text-size-adjust:none;
 
         .panel-center {
             text-align: left;
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255);
             padding: 20px;
             padding-bottom: 5px;
             margin: 0 auto;
@@ -381,6 +381,21 @@ text-size-adjust:none;
                 right: 0;
                 width: 300px;
             }
+            .circular {
+                background: linear-gradient(180deg, #eaf4fb 0%, #d4e5ee 80%, #d4e5ee 100%);
+                width: 96px;
+                font-size: 16px;
+                border-radius: 117px;
+                height: 96px;
+                text-align: center;
+            }
+            .circular span {
+                color: #000;
+                position: relative;
+                text-align: center;
+                left: 0px;
+                top: 26px;
+            }
     </style>
 
 
@@ -393,7 +408,7 @@ text-size-adjust:none;
 <div id="container">
     <!-- Start Header Section -->
     <!--<div class="hidden-header"> </div>-->
-    <header class="clearfix fixed-header">
+    <div class="clearfix fixed-header">
         
             <!-- Start  Logo & Navigation  -->
 <div class="navbar navbar-default navbar-top">
@@ -406,7 +421,7 @@ text-size-adjust:none;
             </button>
             <!-- End Toggle Nav Link For Mobiles -->
             <a class="navbar-brand " href="http://www.scoosh.in" style="height: 40px;">
-                <img alt="zaphow.com" class="logo" src="./img/logoz.png" >
+                <img alt="zaphow.com" class="logo" src="./img/logozz.png" >
             </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -433,66 +448,9 @@ text-size-adjust:none;
 <!-- End Header Logo & Navigation -->
 
         
-    </header>
+    </div>
     <!-- End Header Section -->
 
-    
-<div id="contentContainer">
-    <!-- Start Content -->
-    <div id="content" class="background">
-        <div class="container">
-            <div class="row" style="min-height: 400px;">
-                <div class="col-sm-6 col-md-8" style="valign: middle&#39;; ">
-                    <h1 class="big_title" style="background: none;font-weight: normal;font-family: quicksand"> Trusted local recommendations <span id="rotatingTitle1" style="font-weight: bold;" ></span></h1>
-                    <h3 id="desc" class="small_title" style="font-weight: normal;font-family: quicksand;margin-left:0px;">
-                     
-                    Zaphow ranks local suppliers based on <span style="font-weight:bold;color:#000">verified</span> customer interactions.
-                    </h3>
-                    <h3 class="small_title" style="font-weight: normal;font-family: quicksand;margin-left:6px;">
-                    
-                    </h3>
-                    <img class="mob-banner" src="./img/sbgmin2.png" style="margin-top: 20px;margin-bottom: 20px;" />
-                </div>
-
-                <div class="col-sm-6 col-md-4">
-                     <div class="panel-center desktop">
-                        <h1 class="form_title" style="display: none"></h1>
-                        <form onSubmit="checkFields();" action="/search" method="get" class="landing_page" >
-    
-        
-    
-     
-    
-
-    
-        <!--<input type="text" name="mobile" placeholder="Mobile" class="form-control" id="id_mobile" value="" title="Mobile number" pattern="[\+\-\s0-9]{10-15}" required="required" dcvalue="" aria-required="true">-->
-        
-    
-
-  
-
-    
-
-    
-        <input type="text" id="q" name="q" placeholder="" class="form-control" id="id_location" value="caterers in bangalore" dcvalue="" autocomplete="off" required="required">
-
-        
-    
-
-    
-    <div id="div_id_submit" class="form-group">
-        <div class="controls ">
-            <p style="color: #000; font-size: 9px; text-align: center"></p>
-            <input type="submit" class="submit form-control" id="id_submit" value="Find trusted providers" dcvalue="Submit">
-        </div>
-    </div>
-</form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
 
 
     <div id="content2">
@@ -509,31 +467,19 @@ text-size-adjust:none;
     
     <div class="img-table">
         <div class="img-div">
-           <br> <div><span class="img-title">Verified customer interactions</span></div>
-            <br><div style="line-height: 22px;">Unlike reviews which can be influenced, zaphow collects direct feedback using evidence-based questionnaire.</div>
+           <br>
+            <br>
+            <div style="line-height: 22px;">Tap the criteria you wish to select:</div>
+
             <div class="conv">
-                <p class="from-me chat">Hi, how was your experience with JobTree consultants?</p>
-                <img class="avatar" src="./sc/boy.png" /><p class="from-them chat">It was postive. Finally landed the job i was looking for.</p>
-                <p class="from-me chat">When did you avail JobTree service? (dd-mm-yy)</p>
-                <img class="avatar" src="./sc/boy.png" /><p class="from-them chat">31-05-19</p>
-                <p class="from-me chat">Pls share screenshot of receipt/email as proof to complete your feedback</p>
-                <img class="avatar" src="./sc/boy.png" /><p class="from-them chat"> ✅ File uploaded & verified
-                <p class="from-me chat">Thanks for the feedback 👍</p>
+                <div id="c1" class="circular" onclick="setCriteria('#fe4c4c', '#fe8473', 'c1')"><span>Timely delivery</span></div>
+                <div id="c2" class="circular" onclick="setCriteria('#ec3e91', '#fb64a3', 'c2')" style="position: absolute;top: 200px;margin-left: 99px;width: 96px;border-radius: 96px;font-size: 16px;"><span>Serves in my locality</span></div>
+                <div id="c3" class="circular" onclick="setCriteria('#f7b424', '#fed85c', 'c3')" style="position: absolute;top: 156px;margin-left: 186px;width: 70px;border-radius: 100px;font-size: 12px;height: 70px;"><span style="top:17px;">Value for money</span></div>
             </div>
-            <div style="margin-top: 30px">This way you get unbiased, authentic recommendations for any provider.</div>
         </div>
 
     </div>
-    <div class="img-table">
-        <div class="img-div" style="margin-top:-24px;">
-            <div><span class="img-title">Search by popular criteria</span></div>
-            <img class="img-banner" src="./img/criteria.png" style="width:300px" />
-        </div>
-        <div class="img-div">
-            <div><span>When it comes to finding the right service, your local community knows what to look for.
-                <br><br>That's why zaphow powers your search using popular criteria to provide trusted recommendations that suit your needs.</span></div>
-        </div>
-    </div>
+
     
 </div>
 
@@ -542,7 +488,7 @@ text-size-adjust:none;
                 <br><br>
 
 
-                <div class="panel-center mob-only" style="position: fixed;bottom: 0px;background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgb(232, 243, 250) 100%);left: 0px;">
+                <div class="panel-center mob-only" style="position: absolute;top: 0px;background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgb(232, 243, 250) 100%);left: 0px;">
                     <h1 class="form_title" style="display: none"></h1>
                     <form onsubmit="checkFields();" action="/search" method="get" class="landing_page">
 
@@ -561,7 +507,7 @@ text-size-adjust:none;
 
 
 
-                        <input type="text" style="border: 1px solid;font-size: 16px;height: 40px;" id="q" name="q" placeholder="" class="form-control" value="caterers in bangalore" dcvalue="caterers in bangalore" autocomplete="off" required="required">
+                        <input type="text" style="border: 1px solid;font-size: 16px;height: 40px;margin-left: 37px;width: calc(100% - 38px);z-index: 9999;margin-top:-15px" id="q" name="q" placeholder="" class="form-control" value="caterers in bangalore" dcvalue="caterers in bangalore" autocomplete="off" required="required">
 
 
 
@@ -570,7 +516,7 @@ text-size-adjust:none;
                         <div id="div_id_submit" class="form-group">
                             <div class="controls ">
                                 <p style="color: #000; font-size: 9px; text-align: center"></p>
-                                <input type="submit" class="submit form-control" id="id_submit" value="Find trusted providers" dcvalue="Find trusted providers">
+
                             </div>
                         </div>
                     </form>
@@ -584,7 +530,9 @@ text-size-adjust:none;
     </div>
 </div>
 
-            
+<div style="padding:21px;">
+    <input type="submit" class="submit form-control" id="id_submit" value="Browse results" dcvalue="Browse results">
+</div>
 
 <div class="clear"></div>
 
@@ -617,7 +565,6 @@ text-size-adjust:none;
         </style>
 
         <div class="latest-posts testimonials2">
-            <h3 class="classic-title"><span></span></h3>
 
             <div class="latest-posts-classic custom-carousel touch-carousel" data-appeared-items="2" style="opacity: 0;">
                 
@@ -709,7 +656,17 @@ text-size-adjust:none;
 var i=0,j=0;
 var text = ["validate", "reason", "verify", "believe"];
 
-
+function setCriteria(color1, color2, elem){
+    if($('#'+elem).attr('class').indexOf('selected')==-1) {
+        $('#'+elem).css('background', 'linear-gradient(180deg, '+color2+' 0%, '+color1+' 80%, '+color1+' 100%');
+        $('#'+elem+' > span').css('color', '#fff');
+        $('#'+elem).attr('class','circular selected');
+    } else {
+        $('#'+elem).css('background', 'linear-gradient(180deg, #eaf4fb 0%, #d4e5ee 80%, #d4e5ee 100%');
+        $('#'+elem+' > span').css('color', '#000');
+        $('#'+elem).attr('class','circular');
+    }
+}
 
 </script>
 

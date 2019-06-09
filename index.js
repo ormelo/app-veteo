@@ -67,6 +67,10 @@ var pages = [];
     pages.index = data;
   });
 
+  fs.readFile("public/search.html", "utf8", function(err, data) {
+      pages.search = data;
+    });
+
   fs.readFile("public/products.html", "utf8", function(err, data) {
     pages.products = data;
   });
@@ -788,6 +792,10 @@ app.post('/submitGetQuote', function(req, res) {
         client.set(email, members);
     //res.send(pages.getQuote);*/
     res.redirect('/quoteChecker');
+});
+
+app.get("/search", function(request, response) {
+  response.sendFile(path.resolve(__dirname, 'public', 'search.html'));
 });
 
 app.post('/submitMealType', function(req, res) {
