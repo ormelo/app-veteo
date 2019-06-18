@@ -23,7 +23,7 @@ text-size-adjust:none;
 
 </style>
     <!-- Basic -->
-    <title>Zaphow - trusted local recommendations</title>
+    <title>localista - trusted local recommendations</title>
 
     <!-- Define Charset -->
     
@@ -136,6 +136,11 @@ text-size-adjust:none;
         #desc {
         }
 
+        .img-table {
+            display: table;
+            margin-top: 20px;
+        }
+
         @media (max-width: 768px){
                 #banner {
                   display: none;
@@ -163,6 +168,9 @@ text-size-adjust:none;
                 padding-left: 20px;
                 padding-right: 20px;
                }
+               .img-table {
+                    margin-top: 20px;
+                }
             }
             @media (min-width: 600px){
                 .mob-banner {
@@ -185,11 +193,11 @@ text-size-adjust:none;
                .mob-only {
                 display: none;
                }
+               .img-table {
+                    margin-top: 60px;
+                }
             }
-            .img-table {
-            display: table;
-            margin-top: 20px;
-        }
+
 
         .img-div {
             font-family: Quicksand;
@@ -381,6 +389,30 @@ text-size-adjust:none;
                 right: 0;
                 width: 300px;
             }
+            .veristeps {
+                margin: 12px;
+            }
+            .veristeps li {
+                border-left: 2px solid #b6dffb;
+                line-height: 20px;
+                font-size: 16px;
+                padding: 0 2.5rem 2rem;
+                position: relative;
+                text-overflow: ellipsis;
+                width: 100%;
+            }
+            .veristeps li:before {
+                background: #fff;
+                border: 2px solid #0fafff;
+                border-radius: 100%;
+                content: "";
+                height: 20px;
+                left: 0;
+                margin-left: -10.5px;
+                position: absolute;
+                top: 0;
+                width: 20px;
+            }
     </style>
 
 
@@ -524,6 +556,24 @@ text-size-adjust:none;
         </div>
 
     </div>
+
+        <div class="img-table table-2">
+            <div class="img-div">
+                <div><span class="img-title">5-Step Verification Process</span></div>
+                <br>
+                <div>Every user who submits feedback has to go through the rigorous verification process.</div>
+                <br>
+                <ul class="veristeps" >
+                    <li><span>Mobile number & name cross-verified</span></li>
+                    <li><span>Has provided date of service use</span></li>
+                    <li><span>Has added proof of service use</span></li>
+                    <li><span>Proof verified and digitally fingerprinted</span></li>
+                    <li><span>Answered cross-validating questions</span></li>
+                </ul>
+            </div>
+
+        </div>
+
     <div class="img-table">
         <div class="img-div" style="margin-top:-24px;">
             <div><span class="img-title">Get the most out of localista</span></div>

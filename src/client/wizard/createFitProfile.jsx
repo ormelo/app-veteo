@@ -16,7 +16,7 @@ class CreateFitProfile extends Component {
     }
     componentDidMount(){
       gtag('event', 'Stage', {'event_category':'load', 'event_label':'fit-profile'}); 
-      gtag('config', 'UA-107877274-1',{'page_title': 'fit_profile','page_location': 'http://www.poseding.com/fit-profile','page_path': '/fit-profile'});
+      gtag('config', 'UA-107877274-1',{'page_title': 'fit_profile','page_location': 'http://www.poseding.com/search','page_path': '/search'});
       Loggr.Log.trackUser(uid, "", "Fit profile page visited.");
       console.log('this.props.history:',this.props.history);
       if(variation == 1){
@@ -37,7 +37,7 @@ class CreateFitProfile extends Component {
         console.log('history.listen:', location);
         console.log('nonLatestChrome: ', chromeOnly);
         console.log('location.pathname: ', location.pathname);
-        if(chromeOnly && location.pathname == '/fit-profile') {
+        if(chromeOnly && location.pathname == '/search') {
           console.log('reloading');
           window.location.reload();
         }
@@ -45,7 +45,7 @@ class CreateFitProfile extends Component {
       window.onScanComplete = function() {
         var fitStr = 'faceH:'+localStorage.getItem('faceH')+'faceW:'+localStorage.getItem('faceW')+'faceX:'+localStorage.getItem('faceX')+'faceY:'+localStorage.getItem('faceY')+'shoulderH:'+localStorage.getItem('shoulderH')+'shoulderW:'+localStorage.getItem('shoulderW')+'shoulderX:'+localStorage.getItem('shoulderX')+'shoulderY:'+localStorage.getItem('shoulderY');
         // alert(fitStr);
-        h.push('/fit-profile/update');
+        h.push('/search/update');
         Loggr.Log.trackUser(uid, "", "selfie captured.");
         setTimeout("sendPic()",1500);
         //if(variation == 0) {
@@ -77,7 +77,7 @@ class CreateFitProfile extends Component {
                       <img className="selfie" src="../img/quizicon.jpg" style={{width:'60px',marginTop:'-10px'}}></img>
                     </div>
                     <div style={{display:'table-cell'}}>
-                      <Link to="/fit-profile/quiz" className="btn upload-btn" style={{width:'226px',top:'30px',left:'6px'}}><span>Take style quiz</span></Link>
+                      <Link to="/search/update" className="btn upload-btn" style={{width:'226px',top:'30px',left:'6px'}}><span>Take style quiz</span></Link>
                     </div>
                   </div>
                 </div> 
@@ -101,14 +101,14 @@ var QuizWithRouter = withRouter(Quiz)
 
 render(<Router>
         <div>
-        <Route path="/fit-profile" render={()=>(
+        <Route path="/search" render={()=>(
             <div>
             <div className="logo"><img src="../img/logoimg.png" style={{width: '16px',marginLeft: '20px'}}/><span className="logoFont">attirist</span>
             <img className="bag" src="../img/bag.jpg" width="20px"/>
             </div>
-            <Route exact path="/fit-profile" component={CreateFitProfileWithRouter}/>
-            <Route exact path="/fit-profile/update" component={CaptureMeasurements}/>
-            <Route exact path="/fit-profile/quiz" component={QuizWithRouter}/>
+            <Route exact path="/search" component={CreateFitProfileWithRouter}/>
+            <Route exact path="/search/update" component={CaptureMeasurements}/>
+            <Route exact path="/search/quiz" component={QuizWithRouter}/>
           </div>)} />
         <Route path="/shop" render={()=>(
             <div>

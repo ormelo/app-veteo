@@ -160,9 +160,7 @@ function displayScore() {
             <div style={{fontSize:'18px',textAlign:'center',lineHeight:'28px',paddingTop:'12px',color: '#8e8c92',fontFamily:'Open Sans'}}><div id='quiz'></div>
             </div>
             <div className="btn-container" style={{bottom: '10px'}}>
-            <a id='button' className="btn" style={{margin:'0 auto',zIndex:1,marginTop:'36px',width: '286px'}}>
-              <span>Next</span>
-            </a>
+            <Link to="/search/update" className="btn upload-btn" style={{width:'226px',top:'30px',left:'6px'}}><span>Next</span></Link>
             </div>
           </div>
           );
