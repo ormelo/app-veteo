@@ -103,10 +103,51 @@ render(<Router>
         <div>
         <Route path="/search" render={()=>(
             <div>
-            <div className="logo"><img src="../img/logoimg.png" style={{width: '16px',marginLeft: '20px'}}/><span className="logoFont">attirist</span>
-            <img className="bag" src="../img/bag.jpg" width="20px"/>
+            <div className="logo"><img src="../img/logoll.png" />
+             <input type="text" id="q" name="q" placeholder="" className="form-control" value="best caterers in bangalore" dcvalue="" autocomplete="off" required="required"/>
+                 <div className="tag-wrapper">
+                   <div className="heading">Popular criteria:</div>
+                   <div className="tag-c">
+                       <div className="tag">
+                         <input type="checkbox" />
+                         <label for="">North Indian</label>
+                         <i className="fa fa-plus"></i>
+                         <i className="fa fa-check"></i>
+                       </div>
+
+                       <div className="tag">
+                         <input type="checkbox" />
+                         <label for="">Variety</label>
+                         <i className="fa fa-plus"></i>
+                         <i className="fa fa-check"></i>
+                       </div>
+
+                       <div className="tag">
+                         <input type="checkbox" />
+                         <label for="">Non-veg</label>
+                         <i className="fa fa-plus"></i>
+                         <i className="fa fa-check"></i>
+                       </div>
+
+                       <div className="tag">
+                         <input type="checkbox" />
+                         <label for="">Veg</label>
+                         <i className="fa fa-plus"></i>
+                         <i className="fa fa-check"></i>
+                       </div>
+
+                       <div className="tag">
+                         <input type="checkbox" />
+                         <label for="">Available near me</label>
+                         <i className="fa fa-plus"></i>
+                         <i className="fa fa-check"></i>
+
+                       </div>
+                 </div>
+
+                 </div>
             </div>
-            <Route exact path="/search" component={CreateFitProfileWithRouter}/>
+            <Route exact path="/search" />
             <Route exact path="/search/update" component={CaptureMeasurements}/>
             <Route exact path="/search/quiz" component={QuizWithRouter}/>
           </div>)} />

@@ -11,30 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="Trusted local recommendations based on community knowledge.">
-    <meta property="og:description" content="Best catering services for your party at affordable prices. We serve everything fresh & hot right infront of your home, thanks to our food trucks.">
-    <meta property="og:keywords" content="Birthday Party, Office party, Corporate events, Catering, Small Party, Caterers, Small Home Parties,  Caterers in bangalore, house parties">
-    <meta name="keywords" content="Birthday Party, Office party, Corporate events, Catering, Small Party, Caterers, Small Home Parties,  Caterers in bangalore, house parties">
 
-    
-    
-    
-    
-    
-    
-
-    <style type="text/css">
-        header {
-            z-index: 99;
-        }
-
-
-    </style>
 
 
 
     <style type="text/css">
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
 *{
     box-sizing: border-box;
     margin: 0;
@@ -43,7 +24,131 @@
 
 html{
     background-color: #ffffff;
-    font-family: 'f', sans-serif;
+    font-family: quicksand;
+}
+#q {
+    font-size: 18px;
+    height: 40px;
+    padding: 12px 4px;
+    margin: 0px;
+    border: 0px;
+    border-bottom: 1px solid #0b87c7;
+    position: absolute;
+    margin-left: 16px;
+    font-family: quicksand;
+    font-weight: bolder;
+    width: calc(100% - 90px);
+}
+h1 {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 15px;
+}
+h1 span {
+  font-size: 1.4em;
+  color: #f94877;
+  font-weight: 700;
+  font-style: italic;
+}
+p {
+  text-align: center;
+  color: #949494;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.tag-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 0px;
+    padding: 0px;
+    text-align: center;
+    border-radius: 5px;
+}
+.tag-wrapper .heading {
+    left: 0px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: 16px;
+    margin-top: 8px;
+    text-align: left;
+}
+.tag {
+  display: inline-block;
+  position: relative;
+  margin: 5px 10px 5px 0px;
+}
+.tag input[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+  z-index: 300;
+  cursor: pointer;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.tag input[type=checkbox]:hover + label {
+  background: #0badff;
+}
+.tag label {
+  padding: 7px 30px 6px 18px;
+  position: relative;
+  z-index: 200;
+  color: white;
+  display: block;
+  border-radius: 16px;
+  background: #0badff;
+  font-size: 12px;
+  transition: all 0.08s ease-in;
+}
+.tag .fa {
+  position: absolute;
+  z-index: 250;
+  right: 11px;
+  top: 7px;
+  color: white;
+  line-height: 0.95;
+}
+.tag .fa-check {
+  display: none;
+  top: 6px;
+  right: 10px;
+  transition: all 0.08s ease-in;
+}
+.tag input[type=checkbox]:checked + label {
+  background: #32d0ff;
+  -webkit-animation: flick 0.08s;
+          animation: flick 0.08s;
+}
+.tag input[type=checkbox]:checked ~ .fa-plus {
+  display: none;
+}
+.tag input[type=checkbox]:checked ~ .fa-check {
+  -webkit-animation: flick 0.08s;
+          animation: flick 0.08s;
+  display: block;
+}
+@-webkit-keyframes flick {
+  60% {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes flick {
+  60% {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 .slider {
   width: 80%;
@@ -107,14 +212,6 @@ html{
   top: -47px;
   height: 390px;
   width: 100%;
-}
-@font-face{
-  font-family:'f';
-  src: url('fonts/f.ttf');
-}
-@font-face{
-  font-family:'a';
-  src: url('fonts/a.otf');
 }
 .button-container {
     margin: 0 auto;
@@ -209,7 +306,6 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .fit-profile-heading {
   margin-top: 60px;
   text-align: center;
-  font-family: Open Sans;
   font-size: 18px;
   color:#8e8c92;
 }
@@ -228,7 +324,6 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 .selfie-desc {
   width: 220px;
-  font-family: Open Sans;
   font-size: 18px;
   float: left;
   margin-top: 6px;
@@ -1154,15 +1249,19 @@ p img.right { float: right; margin-left: 1em; }
     }
     .logo {
       width: 100%;
-      height: 58px;
+      height: 180px;
+      background: url(img/sbg.png);
+      background-size: contain;
       margin: 0 auto;
       top: 15px;
       position: absolute;
       left: 0px;
       z-index: 1;
-      -webkit-box-shadow: 0px 13px 25px -12px rgba(0,0,0,0.18);
-      -moz-box-shadow: 0px 13px 25px -12px rgba(0,0,0,0.18);
-      box-shadow: 0px 13px 25px -12px rgba(0,0,0,0.18);
+    }
+    .logo img {
+        width: 40px;
+        margin-left: 16px;
+        margin-top: -3px;
     }
     .headline {
       margin: 0 auto;
@@ -1250,8 +1349,10 @@ p img.right { float: right; margin-left: 1em; }
       background-position-y: -31px;
     }
     .logo {
-      width: 178px;
-      height: 44px;
+      width: calc(100% - 40px);
+      background: url(img/sbg.png);
+      background-size: contain;
+      height: 180px;
       margin: 0 auto;
       top: 20px;
       z-index: 1;
@@ -1358,8 +1459,8 @@ p img.right { float: right; margin-left: 1em; }
       background-position-y: -31px;
     }
     .logo {
-      width: 178px;
-      height: 44px;
+      width: calc(100% - 40px);
+      height: 180px;
       margin: 0 auto;
       background-size: contain;
       top: 20px;
@@ -1406,13 +1507,7 @@ p img.right { float: right; margin-left: 1em; }
 }
 
 </style>
-    <link rel="stylesheet" type="text/css" href="css/slick.css">
-    <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
-    <script
-            src="https://code.jquery.com/jquery-2.2.4.min.js"
-            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-            crossorigin="anonymous"></script>
-    <script src="scripts/slick.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css"/>
     
     
 </head>
@@ -1423,9 +1518,6 @@ p img.right { float: right; margin-left: 1em; }
 
 </div>
 
-<div style="padding:21px;bottom: 60px;position: fixed;width: 100%;">
-    <input type="submit" class="submit form-control" id="id_submit" value="Search" dcvalue="Browse results">
-</div>
 
 <div class="clear"></div>
 
@@ -1513,13 +1605,6 @@ p img.right { float: right; margin-left: 1em; }
 
 
 </div>
-<script src="./sc/jquery.min.js"></script>
-<script src="./sc/jquery-ui.min.js"></script>
-
-
-
-
-
 
 <script>
     function navTo(item) {
