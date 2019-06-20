@@ -15,12 +15,11 @@ class CreateFitProfile extends Component {
       history: PropTypes.object.isRequired
     }
     componentDidMount(){
-
+        document.querySelector('.loading').style.display = 'none';
     }
     render(){
         const { match, location, history } = this.props;
         return (<div>
-                loader
               </div>
           );
     }

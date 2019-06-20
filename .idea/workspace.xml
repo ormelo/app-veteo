@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a7935905-6bac-4f9c-a9cb-d044bd06aed3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/public/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/wiz.bundle.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/wiz.bundle.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/wizard/createFitProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/wizard/createFitProfile.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="557">
-              <caret line="1601" column="20" selection-start-line="1601" selection-start-column="20" selection-end-line="1601" selection-end-column="20" />
+            <state relative-caret-position="598">
+              <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -58,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/client/wizard/createFitProfile.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+            <state relative-caret-position="315">
+              <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -104,10 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>/</find>
-      <find>quiz</find>
-      <find>wiz</find>
-      <find>&lt;Li</find>
       <find>&lt;Link</find>
       <find>next</find>
       <find>QuizWithRouter</find>
@@ -132,8 +130,12 @@
       <find>seaf</find>
       <find>heading</find>
       <find>className=</find>
-      <find>CreateFitProfile</find>
       <find>tag-c</find>
+      <find>.tag-d</find>
+      <find>CreateFitProfile</find>
+      <find>.loading</find>
+      <find>loading</find>
+      <find>.loadin</find>
     </findStrings>
     <replaceStrings>
       <replace>/search</replace>
@@ -158,8 +160,8 @@
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/client/wizard/quiz.jsx" />
-        <option value="$PROJECT_DIR$/src/client/wizard/createFitProfile.jsx" />
         <option value="$PROJECT_DIR$/public/search.html" />
+        <option value="$PROJECT_DIR$/src/client/wizard/createFitProfile.jsx" />
       </list>
     </option>
   </component>
@@ -396,17 +398,17 @@
     <entry file="file://$PROJECT_DIR$/src/client/wizard/captureMeasurements.jsx">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/wizard/createFitProfile.jsx">
+    <entry file="file://$PROJECT_DIR$/public/search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        <state relative-caret-position="598">
+          <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/search.html">
+    <entry file="file://$PROJECT_DIR$/src/client/wizard/createFitProfile.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="1601" column="20" selection-start-line="1601" selection-start-column="20" selection-end-line="1601" selection-end-column="20" />
+        <state relative-caret-position="315">
+          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
         </state>
       </provider>
     </entry>

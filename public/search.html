@@ -26,6 +26,44 @@ html{
     background-color: #ffffff;
     font-family: quicksand;
 }
+.loading {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    width: 50px;
+    margin-top: 25%;
+    -webkit-animation: rotation 1s infinite linear;
+    animation: rotation 1s infinite linear;
+    border: 1px solid #0badff;
+    border-radius: 50%;
+    border-top-color: rgba(195, 208, 228, 0.7);
+    height: 50px;
+    width: 50px;
+}
+@keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bgTransition {
+  0% {
+    background-color: #08a;
+  }
+
+  33% {
+    background-color: #80a;
+  }
+
+  66% {
+    background-color: #0a8;
+  }
+
+  100% {
+    background-color: #08a;
+  }
+}
 .tag-c {
     height: 89px;
     margin: 4px;
@@ -430,46 +468,8 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 #footerSlideText {
   padding: 1px 0px 25px 0px;
 }
-.loading-msg {
-  position: absolute;
-  top: -38px;
-  width: 400px;
-  left: -78px;
-  margin: 0 auto;
-  right: 0;
-}
-.loading {
-  position: absolute;
-  background-color: rgba(0,0,0,0);
-  border: 7px solid #343339;
-  opacity: .9;
-  border-top: 7px solid rgba(0,0,0,0);
-  border-left: 7px solid rgba(0,0,0,0);
-  border-radius: 50px;
-  box-shadow: 0 0 35px #343339;
-  width: 50px;
-  height: 50px;
-  -webkit-animation: spin 1.2s infinite linear;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  top: 10px;
-}
 #selfieImage {
   display: none;
-}
-.loading-container {
-    display: none;
-    width: 70px;
-    height: 70px;
-    background: #fff;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    top: 42vh;
-    border-radius: 12px;
-    opacity: 0.8;
 }
 .merchant-frame {
   display: none;
@@ -1603,6 +1603,7 @@ p img.right { float: right; margin-left: 1em; }
         </div>
         <div class="tag-d" ></div>
     </div>
+    <i class="loading"></i>
 <!-- Full Body Container -->
 <div id="containerWiz">
 
