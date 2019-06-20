@@ -17,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
+            <state relative-caret-position="407">
+              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -60,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/wizard/createFitProfile.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+              <caret line="33" column="74" selection-start-line="33" selection-start-column="74" selection-end-line="33" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -160,8 +160,8 @@
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/client/wizard/quiz.jsx" />
-        <option value="$PROJECT_DIR$/public/search.html" />
         <option value="$PROJECT_DIR$/src/client/wizard/createFitProfile.jsx" />
+        <option value="$PROJECT_DIR$/public/search.html" />
       </list>
     </option>
   </component>
@@ -398,17 +398,17 @@
     <entry file="file://$PROJECT_DIR$/src/client/wizard/captureMeasurements.jsx">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/wizard/createFitProfile.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+          <caret line="33" column="74" selection-start-line="33" selection-start-column="74" selection-end-line="33" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
         </state>
       </provider>
     </entry>

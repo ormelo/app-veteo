@@ -8,6 +8,35 @@ import Shop from './shop.jsx';
 import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+class ResultHeadline extends Component {
+    render() {
+        return (
+            <div className="result-c">
+                <img src="./img/heart.png" />
+                <div className="result-headline">{this.props.title}</div>
+            </div>
+        );
+    }
+}
+
+class Card extends Component {
+    render() {
+        return (
+            <div>Card</div>
+        );
+    }
+}
+
+class SearchResult extends Component {
+    render() {
+        return (
+            <div>
+                <ResultHeadline title="Services customers used & loved" />
+            </div>
+        );
+    }
+}
+
 class CreateFitProfile extends Component {
     propTypes: {
       match: PropTypes.object.isRequired,
@@ -20,6 +49,7 @@ class CreateFitProfile extends Component {
     render(){
         const { match, location, history } = this.props;
         return (<div>
+                <SearchResult />
               </div>
           );
     }
