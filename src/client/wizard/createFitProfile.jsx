@@ -66,7 +66,7 @@ let searchResults = [
                           "verifiedStories": [
                             {
                               "avatar": "",
-                              "title": "Good food served \uD83D\uDC4D",
+                              "title": "Timely service",
                               "sentiment": "positive",
                               "story": [
                                 {
@@ -81,7 +81,7 @@ let searchResults = [
                             },
                             {
                               "avatar": "",
-                              "title": "Timely service",
+                              "title": "Good food served \uD83D\uDC4D",
                               "sentiment": "neutral"
                             }
                           ],
@@ -108,6 +108,13 @@ class Card extends Component {
                         });
         return results;
     }
+    renderVerifiedStories(stories) {
+            let results = [];
+            stories.map((item,key)=> {
+                                results.push(<li className="me">{item.title}</li>);
+                            });
+            return results;
+        }
     render() {
         return (
             <div className="card">
@@ -124,9 +131,17 @@ class Card extends Component {
                     </div>
                     <hr/>
                     <div className="detail story">
+                        <div className="story-title">Verified customer stories (tap to view)</div>
+                        <ul className="stories">
+                            {this.renderVerifiedStories(this.props.verifiedStories)}
+
+                        </ul>
                     </div>
                </div>
                <div className="card-d"></div>
+               <div className="ctabtn">
+                                  Get Instant Quote
+                              </div>
             </div>
         );
     }
@@ -137,7 +152,7 @@ class SearchResult extends Component {
     renderCards() {
         let results = [];
         searchResults.map((item,key)=> {
-            results.push(<Card title={item.title} address={item.address} specialities={item.specialities} thumbnail={item.thumbnail}/>);
+            results.push(<Card title={item.title} address={item.address} specialities={item.specialities} verifiedStories={item.verifiedStories} thumbnail={item.thumbnail}/>);
         });
         return results;
     }
