@@ -3,7 +3,7 @@
 <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400" rel="stylesheet">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Basic -->
-    <title>Zaphow - trusted local recommendations</title>
+    <title>localista - trusted local recommendations</title>
 
     <!-- Define Charset -->
     
@@ -25,6 +25,19 @@
 html{
     background-color: #ffffff;
     font-family: quicksand;
+}
+.tag-c {
+    height: 89px;
+    margin: 4px;
+    overflow-y: scroll;
+}
+.tag-d {
+    min-height: 26px;
+    width: 100%;
+    margin-top: -30px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(235, 245, 254) 100%);
+    z-index: 99999;
+    position: absolute;
 }
 .results {
     margin-top: 16px;
@@ -81,7 +94,7 @@ p {
 .tag {
   display: inline-block;
   position: relative;
-  margin: 5px 10px 5px 0px;
+  margin: 5px 9px 5px 0px;
 }
 .tag input[type=checkbox] {
   opacity: 0;
@@ -1556,8 +1569,38 @@ p img.right { float: right; margin-left: 1em; }
                 <i class="fa fa-check"></i>
 
             </div>
-        </div>
 
+
+            <div class="tag">
+                <input type="checkbox" />
+                <label for="">Andhra</label>
+                <i class="fa fa-plus"></i>
+                <i class="fa fa-check"></i>
+            </div>
+
+            <div class="tag">
+                <input type="checkbox" />
+                <label for="">Karnataka</label>
+                <i class="fa fa-plus"></i>
+                <i class="fa fa-check"></i>
+            </div>
+
+            <div class="tag">
+                <input type="checkbox" />
+                <label for="">Within Budget</label>
+                <i class="fa fa-plus"></i>
+                <i class="fa fa-check"></i>
+            </div>
+
+            <div class="tag">
+                <input type="checkbox" />
+                <label for="">Timely service</label>
+                <i class="fa fa-plus"></i>
+                <i class="fa fa-check"></i>
+
+            </div>
+        </div>
+        <div class="tag-d" ></div>
     </div>
 <!-- Full Body Container -->
 <div id="containerWiz">
