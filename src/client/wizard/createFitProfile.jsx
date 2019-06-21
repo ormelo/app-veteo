@@ -8,6 +8,9 @@ import Shop from './shop.jsx';
 import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+let emojis = { "positive": ["./img/inlove.png","./img/smiling.png","./img/inlove.png","./img/inlove.png","./img/favorite.png"],
+  "neutral": ["./img/thinking.png","./img/thinking1.png","./img/smiling.png","./img/thinking.png","./img/thinking.png"]};
+
 let searchResults = [
                       {
                         "id": 1,
@@ -26,7 +29,7 @@ let searchResults = [
                         ],
                         "verifiedStories": [
                           {
-                            "avatar": "",
+                            "avatar": "https://randomuser.me/api/portraits/men/66.jpg",
                             "title": "Good food served \uD83D\uDC4D",
                             "sentiment": "positive",
                             "story": [
@@ -42,7 +45,7 @@ let searchResults = [
                           },
                           {
                             "avatar": "",
-                            "title": "Timely service",
+                            "title": "Timely service     ",
                             "sentiment": "neutral"
                           }
                         ],
@@ -65,9 +68,9 @@ let searchResults = [
                           ],
                           "verifiedStories": [
                             {
-                              "avatar": "",
-                              "title": "Timely service",
-                              "sentiment": "positive",
+                              "avatar": "https://randomuser.me/api/portraits/men/77.jpg",
+                              "title": "Timely service        ",
+                              "sentiment": "neutral",
                               "story": [
                                 {
                                   "from": "bot",
@@ -101,6 +104,7 @@ class ResultHeadline extends Component {
 }
 
 class Card extends Component {
+
     renderSpecialities(specialities) {
         let results = [];
         specialities.map((item,key)=> {
@@ -108,13 +112,25 @@ class Card extends Component {
                         });
         return results;
     }
-    renderVerifiedStories(stories) {
+    renderVerifiedStories(stories, rindex) {
             let results = [];
             stories.map((item,key)=> {
-                                results.push(<li className="me">{item.title}</li>);
+                                if(key == 0) {
+                                    results.push(<li className="me"><img className="avatar" src={item.avatar} /><span className="stitle">{item.title}</span><div className="parent" id={"reaction"+rindex}>
+                                                                        {this.renderReactions(item.sentiment)}</div></li>);
+                                                                        setTimeout("window.showReactions()",800);
+                                }
                             });
             return results;
         }
+    renderReactions(sentiment) {
+        console.log('sentiment: ', sentiment);
+        let reactions = [];
+        emojis[sentiment].map((item, key)=> {
+            reactions.push(<img className="emoji" src={item} />);
+        });
+        return reactions;
+    }
     render() {
         return (
             <div className="card">
@@ -133,7 +149,7 @@ class Card extends Component {
                     <div className="detail story">
                         <div className="story-title">Verified customer stories (tap to view)</div>
                         <ul className="stories">
-                            {this.renderVerifiedStories(this.props.verifiedStories)}
+                            {this.renderVerifiedStories(this.props.verifiedStories, this.props.rindex)}
 
                         </ul>
                     </div>
@@ -152,7 +168,7 @@ class SearchResult extends Component {
     renderCards() {
         let results = [];
         searchResults.map((item,key)=> {
-            results.push(<Card title={item.title} address={item.address} specialities={item.specialities} verifiedStories={item.verifiedStories} thumbnail={item.thumbnail}/>);
+            results.push(<Card title={item.title} address={item.address} specialities={item.specialities} verifiedStories={item.verifiedStories} rindex={key} thumbnail={item.thumbnail}/>);
         });
         return results;
     }
