@@ -30,7 +30,8 @@ let searchResults = [
                         "verifiedStories": [
                           {
                             "avatar": "https://randomuser.me/api/portraits/men/66.jpg",
-                            "title": "Good food served \uD83D\uDC4D",
+                            "title": "Good food served",
+                            "percent": "80",
                             "sentiment": "positive",
                             "story": [
                               {
@@ -45,8 +46,38 @@ let searchResults = [
                           },
                           {
                             "avatar": "",
-                            "title": "Timely service     ",
-                            "sentiment": "neutral"
+                            "title": "Authentic Menu",
+                            "percent": "60",
+                            "sentiment": "positive"
+                          },
+                          {
+                              "avatar": "",
+                              "title": "Timely service",
+                              "percent": "20",
+                              "sentiment": "neutral"
+                          },
+                          {
+                            "avatar": "",
+                            "title": "Prompt service",
+                            "percent": "30",
+                            "sentiment": "positive"
+                          },
+                          {
+                              "avatar": "",
+                              "title": "Value for money",
+                              "percent": "50",
+                              "sentiment": "positive"
+                            },
+                            {
+                              "avatar": "",
+                              "title": "No extras",
+                              "percent": "10",
+                              "sentiment": "neutral"
+                            },
+                          {
+                            "avatar": "40",
+                            "title": "Menu variety",
+                            "sentiment": "positive"
                           }
                         ],
                         "cta": "Get instant quote"
@@ -96,8 +127,7 @@ class ResultHeadline extends Component {
     render() {
         return (
             <div className="result-c">
-                <img src="./img/heart.png" />
-                <div className="result-headline">{this.props.title}</div>
+                <div className="result-headline">{this.props.title} <span className="grey-rbox"> ✓&nbsp;&nbsp;5-step verification</span></div>
             </div>
         );
     }
@@ -116,13 +146,20 @@ class Card extends Component {
             let results = [];
             stories.map((item,key)=> {
                                 if(key == 0) {
-                                    results.push(<li className="me"><img className="avatar" src={item.avatar} /><span className="stitle">{item.title}</span><div className="parent" id={"reaction"+rindex}>
+                                    results.push(<li className="me"><span className="stitle">{item.title}</span><div className="parent" id={"reaction"+rindex}>
                                                                         {this.renderReactions(item.sentiment)}</div></li>);
                                                                         setTimeout("window.showReactions()",800);
                                 }
                             });
             return results;
         }
+    renderTopics(stories, rindex) {
+                let results = [];
+                stories.map((item,key)=> {
+                                        results.push(<div className="topic tag rounded"><label>#{item.title}</label></div>);
+                                });
+                return results;
+            }
     renderReactions(sentiment) {
         console.log('sentiment: ', sentiment);
         let reactions = [];
@@ -147,11 +184,10 @@ class Card extends Component {
                     </div>
                     <hr/>
                     <div className="detail story">
-                        <div className="story-title">Verified customer stories (tap to view)</div>
-                        <ul className="stories">
-                            {this.renderVerifiedStories(this.props.verifiedStories, this.props.rindex)}
+                        <div className="topics tag-wrapper left">
+                            {this.renderTopics(this.props.verifiedStories, this.props.rindex)}
 
-                        </ul>
+                        </div>
                     </div>
                </div>
                <div className="card-d"></div>
@@ -176,7 +212,7 @@ class SearchResult extends Component {
     render() {
         return (
             <div>
-                <ResultHeadline title="Services customers used & loved" />
+                <ResultHeadline title="Reviews based on " />
                 {this.renderCards()}
             </div>
         );
