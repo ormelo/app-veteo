@@ -31,7 +31,7 @@ let searchResults = [
                           {
                             "avatar": "https://randomuser.me/api/portraits/men/66.jpg",
                             "title": "Good food served",
-                            "percent": "80",
+                            "score": "80",
                             "sentiment": "positive",
                             "story": [
                               {
@@ -47,31 +47,31 @@ let searchResults = [
                           {
                             "avatar": "",
                             "title": "Authentic Menu",
-                            "percent": "60",
+                            "score": "60",
                             "sentiment": "positive"
                           },
                           {
                               "avatar": "",
                               "title": "Timely service",
-                              "percent": "20",
+                              "score": "20",
                               "sentiment": "neutral"
                           },
                           {
                             "avatar": "",
                             "title": "Prompt service",
-                            "percent": "30",
+                            "score": "30",
                             "sentiment": "positive"
                           },
                           {
                               "avatar": "",
                               "title": "Value for money",
-                              "percent": "50",
+                              "score": "50",
                               "sentiment": "positive"
                             },
                             {
                               "avatar": "",
                               "title": "No extras",
-                              "percent": "10",
+                              "score": "10",
                               "sentiment": "neutral"
                             },
                           {
@@ -153,10 +153,11 @@ class Card extends Component {
                             });
             return results;
         }
+
     renderTopics(stories, rindex) {
                 let results = [];
                 stories.map((item,key)=> {
-                                        results.push(<div className="topic tag rounded"><label>#{item.title}</label></div>);
+                                        results.push(<div className="topic tag rounded"><label className={`score${item.score}`}>#{item.title}</label></div>);
                                 });
                 return results;
             }
@@ -191,9 +192,12 @@ class Card extends Component {
                     </div>
                </div>
                <div className="card-d"></div>
-               <div className="ctabtn">
-                                  Get Instant Quote
+               <div className="ctabtn top">
+                                  Learn More
                               </div>
+               <div className="ctabtn">
+                                                 Get Instant Quote
+                                             </div>
             </div>
         );
     }
