@@ -438,7 +438,7 @@ text-size-adjust:none;
             </button>
             <!-- End Toggle Nav Link For Mobiles -->
             <a class="navbar-brand " href="http://www.scoosh.in" style="height: 40px;">
-                <img alt="zaphow.com" class="logo" src="./img/logoe.png" >
+                <img alt="zaphow.com" class="logo" src="./img/logoe1.png" >
             </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -475,10 +475,10 @@ text-size-adjust:none;
         <div class="container">
             <div class="row" style="min-height: 400px;">
                 <div class="col-sm-6 col-md-8" style="valign: middle&#39;; ">
-                    <h1 class="big_title" style="background: none;font-weight: normal;font-family: quicksand">Find something remarkworthy!</h1>
+                    <h1 class="big_title" style="background: none;font-weight: normal;letter-spacing: 2px;">Find something remarkworthy!</h1>
                     <h3 id="desc" class="small_title" style="font-weight: normal;font-family: quicksand;margin-left:0px;">
 
-                        Original and valuable social opinions presented as short useful snippets.
+                        Credible and emerging social opinions presented as short snippets.
                     </h3>
                     <h3 class="small_title" style="font-weight: normal;font-family: quicksand;margin-left:6px;">
                     
@@ -540,18 +540,29 @@ text-size-adjust:none;
 
     
     <div class="img-table">
-        <div class="img-div">
-           <br> <div><span class="img-title" style="line-height: 30px">Form opinions based on a credible source</span></div>
-            <br><div style="line-height: 22px;">epigram curates and filters content from various sources including
-            screened & moderated user opinions,
-            news articles, blogs and videos.<br><br>
+        <div class="img-div" style="text-align: left">
+           <br> <div><span class="img-title" style="line-height: 30px">What's an epigram?</span></div>
+            <br><div style="line-height: 22px;">An epigram is a <span style="color:#000;font-weight:bold">short positive sentiment</span> about <span id="rotatingTitle">a product.</span><br><br>
 
-            <br> <div><img style="width: 270px;position:absolute;left: -24px;right:0;margin:auto;" src="img/trust.png"/></div><br><br>
-            <div style="margin-top:190px;">Introducing a reputation system based on <span style="font-weight:bold;color:#000">5-step verified customer feedback</span>.</div></div>
 
         </div>
 
     </div>
+
+        <div class="img-table" style="margin-top:-40px;">
+            <div class="img-div" style="text-align: left">
+                <br> <div><span class="img-title" style="line-height: 30px">How's it different?</span></div>
+                <br><div style="line-height: 22px;">Besides being <span style="color:#000;font-weight:bold">short</span>, epigrams are highly <span style="color:#000;font-weight:bold">trustworthy</span>.
+                Behind each epigram is a vetting process involving humans and machines.<br><br>
+
+                <br> <div><img style="width: 270px;position:absolute;left: -24px;right:0;margin:auto;" src="img/trust.png"/></div><br><br>
+                <div style="margin-top:190px;">Each epigram is verified closely and screened by editors.
+                Think of them as the nerdy ones who ar hard to convince, except they are AI algos.</div></div>
+
+                <br>
+            </div>
+
+        </div>
 
         <div class="img-table table-2" style="margin-top: 0px">
             <div class="img-div">
@@ -753,7 +764,17 @@ text-size-adjust:none;
 
     var changeInt = 0;
 var i=0,j=0;
-var text = ["validate", "reason", "verify", "believe"];
+var text = ["a product.", "a service.", "a person.", "anything!"];
+
+var interval = setInterval(function() {
+    $("#rotatingTitle").fadeOut(400, function() {
+        $(this).text(text[i])
+    }).fadeIn(400);
+    i++;
+    if (i >= text.length-1) {
+        clearInterval(interval);
+    }
+}, 1400);
 
 
 
