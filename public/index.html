@@ -36,9 +36,9 @@ text-size-adjust:none;
     <meta name="keywords" content="Birthday Party, Office party, Corporate events, Catering, Small Party, Caterers, Small Home Parties,  Caterers in bangalore, house parties">
 
     
-    <link rel="stylesheet" href="./sc/bootstrap.min.css" media="screen">
-<link rel="stylesheet" href="./sc/font-awesome.min.css" type="text/css" media="screen">
-<link rel="stylesheet" href="./sc/jquery-ui.min.css">
+    <link rel="stylesheet" href="./assets/bootstrap.min.css" media="screen">
+<link rel="stylesheet" href="./assets/font-awesome.min.css" type="text/css" media="screen">
+<link rel="stylesheet" href="./assets/jquery-ui.min.css">
 
 
 
@@ -49,15 +49,15 @@ text-size-adjust:none;
     <!-- Slick nav was changed -->
     
     <!-- Span CSS Styles  -->
-    <link rel="stylesheet" type="text/css" href="./sc/main.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/main.min.css">
     
 
     <!-- Responsive CSS Styles  -->
-    <link rel="stylesheet" type="text/css" href="./sc/responsive.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/responsive.min.css">
     <!-- Css3 Transitions Styles  -->
     <!--<link rel="stylesheet" type="text/css" href="/static/span-template/assets/css/animate.css" media="screen">-->
     <!-- Selected Preset -->
-    <link rel="stylesheet" type="text/css" href="./sc/pink.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./assets/pink.css" media="screen">
 
 
     
@@ -82,7 +82,7 @@ text-size-adjust:none;
             overflow-x: hidden;
         }
       #contentContainer {
-        background-image: url('./sc/sbgl1.png');
+        background-image: url('./assets/sbgl1.png');
         background-repeat: repeat-x;
         background-size: contain;
       }
@@ -475,14 +475,12 @@ text-size-adjust:none;
         <div class="container">
             <div class="row" style="min-height: 400px;">
                 <div class="col-sm-6 col-md-8" style="valign: middle&#39;; ">
-                    <h1 class="big_title" style="background: none;font-weight: normal;letter-spacing: 2px;">Find something remarkworthy!</h1>
+                    <h1 class="big_title" style="background: none;font-weight: normal;letter-spacing: 2px;">Make better <span id="rotatingTitleText">shopping</span> decisions</h1>
                     <h3 id="desc" class="small_title" style="font-weight: normal;font-family: quicksand;margin-left:0px;">
 
-                        Discover something <span style="color: #000; font-weight: bold">rare</span> and <span style="color: #000; font-weight: bold">authentic</span>.
+                        epigram uses social intelligence to suggest better options with <span style="color: #000; font-weight: bold">sound reasoning</span>.
                     </h3>
-                    <h3 id="desc" class="small_title" style="font-weight: normal;font-family: quicksand;margin-left:0px;margin-top:0px;">
-                    A hygienic restaurant, an offbeat place, a worthwhile purchase and more.
-                    </h3>
+
 
                     <h3 class="small_title" style="font-weight: normal;font-family: quicksand;margin-left:6px;">
                     
@@ -546,8 +544,9 @@ text-size-adjust:none;
     <div class="img-table">
         <div class="img-div" style="text-align: left">
            <br> <div><span class="img-title" style="line-height: 30px">What's an epigram?</span></div>
-            <br><div style="line-height: 22px;">An epigram is a <span style="color: #000; font-weight: bold;">short positive sentiment</span> remarking a worthwhile experience.<br><br>
-
+            <br><div style="line-height: 22px;">An epigram is a <span style="color: #000; font-weight: bold;">rationale</span> or positive sentiment telling you why you should choose a service/product.<br><br>
+            For instance, 'accurate diagnosis' is an epigram for choosing a better doctor.
+            <br><br>
 
         </div>
 
@@ -566,8 +565,9 @@ text-size-adjust:none;
 
         <div class="img-table" style="margin-top:-40px;">
             <div class="img-div" style="text-align: left">
-                <br> <div><span class="img-title" style="line-height: 30px">A leap from reviews/blogs</span></div>
-                <br><div style="line-height: 22px;">Besides being <span style="color:#000;font-weight:bold">short</span>, epigrams are highly <span style="color:#000;font-weight:bold">trustworthy</span>.
+                <div><span class="img-title" style="line-height: 30px">A leap from reviews/blogs</span></div>
+                <div style="line-height: 22px;"><br>Reviews often don't give you the full picture.</div>
+                <br><div style="line-height: 22px;">epigrams, besides being <span style="color:#000;font-weight:bold">short</span>, are highly <span style="color:#000;font-weight:bold">trustworthy</span>.
                 Behind each epigram is a multi-step verification process to eliminate fake opinions.<br><br>
 
                 <br> <div><img style="width: 270px;position:absolute;left: -24px;right:0;margin:auto;" src="img/trust.png"/></div><br><br>
@@ -633,7 +633,7 @@ text-size-adjust:none;
 
 
 
-                        <input type="text" style="border: 1px solid;font-size: 16px;height: 40px;" id="q" name="q" placeholder="" class="form-control" value="remarkworthy caterers in bangalore" dcvalue="trusted caterers in bangalore" autocomplete="off" required="required">
+                        <input type="text" style="border: 1px solid;font-size: 16px;height: 40px;" id="q" name="q" placeholder="" class="form-control" value="best stock picks for 2019" dcvalue="trusted caterers in bangalore" autocomplete="off" required="required">
 
 
 
@@ -751,8 +751,8 @@ text-size-adjust:none;
 
     
 </div>
-<script src="./sc/jquery.min.js"></script>
-<script src="./sc/jquery-ui.min.js"></script>
+<script src="./assets/jquery.min.js"></script>
+<script src="./assets/jquery-ui.min.js"></script>
     
 
     
@@ -796,6 +796,20 @@ var interval = setInterval(function() {
         i = 0;
     }
 }, 2500);
+
+
+var k=0;
+var textArr = ["shopping", "travel", "trade", "everyday"];
+
+var interval = setInterval(function() {
+    $("#rotatingTitleText").fadeOut(400, function() {
+        $(this).text(textArr[k]);
+    }).fadeIn(400);
+    k++;
+    if(k == text.length) {
+        k = 0;
+    }
+}, 1800);
 
 
 

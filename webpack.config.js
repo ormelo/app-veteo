@@ -2,16 +2,11 @@ var webpack = require('webpack');
 var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, 'public');
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
-var API_DIR = path.resolve(__dirname, 'src/client/api');
-var HOME_DIR = path.resolve(__dirname, 'src/client/home');
 var WIZ_DIR = path.resolve(__dirname, 'src/client/wizard');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 var config = {
   entry: {
-    app: APP_DIR + '/index.jsx',
-    home: HOME_DIR + '/home.jsx',
     wiz: WIZ_DIR + '/createFitProfile.jsx'
   },
   output: {
@@ -27,37 +22,7 @@ var config = {
     loaders : [
       {
         test : /\.jsx?/,
-        include : APP_DIR,
-        exclude: [/node_modules/],
-        loader : 'babel',
-        query:
-        {
-          presets: ['es2015','react']
-        }
-      },
-      {
-        test : /\.jsx?/,
-        include : HOME_DIR,
-        exclude: [/node_modules/],
-        loader : 'babel',
-        query:
-        {
-          presets: ['es2015','react']
-        }
-      },
-      {
-        test : /\.jsx?/,
         include : WIZ_DIR,
-        exclude: [/node_modules/],
-        loader : 'babel',
-        query:
-        {
-          presets: ['es2015','react']
-        }
-      },
-      {
-        test : /\.js?/,
-        include : API_DIR,
         exclude: [/node_modules/],
         loader : 'babel',
         query:
